@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="stringutil">
+      <UniqueIdentifier>{f7b1f85d-399d-4f6c-8eeb-2270090909a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="time">
+      <UniqueIdentifier>{fe6c30db-95fc-48dc-b155-71a9952a5f88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="encode">
+      <UniqueIdentifier>{9b00f32e-77c6-4dc3-87f8-3571e615a687}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="math">
+      <UniqueIdentifier>{037776bf-c74a-4d1b-92a8-2dc67e720d5a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stringutil\stringutil.h">
+      <Filter>stringutil</Filter>
+    </ClInclude>
+    <ClInclude Include="cetus_define.h" />
+    <ClInclude Include="time\timespan.h">
+      <Filter>time</Filter>
+    </ClInclude>
+    <ClInclude Include="encode\base64.h">
+      <Filter>encode</Filter>
+    </ClInclude>
+    <ClInclude Include="time\data_time.h">
+      <Filter>time</Filter>
+    </ClInclude>
+    <ClInclude Include="time\system_time.h">
+      <Filter>time</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="time\timespan.cpp">
+      <Filter>time</Filter>
+    </ClCompile>
+    <ClCompile Include="encode\base64.cpp">
+      <Filter>encode</Filter>
+    </ClCompile>
+    <ClCompile Include="time\data_time.cpp">
+      <Filter>time</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
