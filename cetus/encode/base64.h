@@ -3,7 +3,7 @@
 #include "cetus_define.h"
 #include <vector>
 
-namespace cetus
+namespace terra
 {
 	/**
 	* Class for encoding/decoding Base64 data (RFC 4648)

@@ -1,6 +1,6 @@
 #include "base64.h"
 
-using namespace cetus;
+using namespace terra;
 
 /** The table used to encode a 6 bit value as an ascii character */
 uint8_t Base64Encoding::kEncodingAlphabet[64] = { 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L',

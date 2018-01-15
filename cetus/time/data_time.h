@@ -3,7 +3,7 @@
 #include "cetus_define.h"
 #include "timespan.h"
 
-namespace cetus
+namespace terra
 {
 	/**
 	* Enumerates the days of the week in 7-day calendars.

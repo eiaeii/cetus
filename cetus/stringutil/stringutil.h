@@ -2,7 +2,7 @@
 
 #include "cetus_define.h"
 #include <vector>
-namespace cetus
+namespace terra
 {
 	class StringUtils
 	{

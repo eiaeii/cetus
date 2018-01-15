@@ -6,7 +6,7 @@
 #elif  defined(PLATFORM_LINUX)
 #include <sys/time.h>
 #endif
-namespace cetus
+namespace terra
 {
 	struct SystemTime
 	{

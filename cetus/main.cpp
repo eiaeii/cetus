@@ -2,7 +2,7 @@
 #include "stringutil/stringutil.h"
 #include "encode/base64.h"
 #include "time/data_time.h"
-using namespace cetus;
+using namespace terra;
 int main()
 {
 	std::string str;

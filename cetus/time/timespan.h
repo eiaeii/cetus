@@ -2,7 +2,7 @@
 
 #include "cetus_define.h"
 
-namespace cetus
+namespace terra
 {
 	namespace ETimespan
 	{

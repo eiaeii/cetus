@@ -1,7 +1,7 @@
 #include "data_time.h"
 #include "system_time.h"
 #include "stringutil/stringutil.h"
-using namespace cetus;
+using namespace terra;
 
 /* DateTime constants
 *****************************************************************************/
@@ -775,7 +775,7 @@ bool DateTime::Validate(int32_t year, int32_t month, int32_t day, int32_t hour, 
 //	return Ar << DateTime.ticks_;
 //}
 
-size_t cetus::GetTypeHash(const DateTime & DateTime)
+size_t terra::GetTypeHash(const DateTime & DateTime)
 {
 	int64_t val = DateTime.ticks_;
 	return std::hash<int64_t>()(val);
