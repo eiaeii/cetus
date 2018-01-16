@@ -13,6 +13,9 @@
     <Filter Include="math">
       <UniqueIdentifier>{037776bf-c74a-4d1b-92a8-2dc67e720d5a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="container">
+      <UniqueIdentifier>{c7a620a7-a0a6-4fd8-a345-3e075e717a33}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stringutil\stringutil.h">
@@ -30,6 +33,9 @@
     </ClInclude>
     <ClInclude Include="time\system_time.h">
       <Filter>time</Filter>
+    </ClInclude>
+    <ClInclude Include="container\vector_ex.h">
+      <Filter>container</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
