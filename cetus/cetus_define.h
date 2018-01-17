@@ -12,8 +12,13 @@
 #include <cmath>
 #include <functional>
 
+
+namespace terra
+{
 #if ASSERT_AS_EXCEPTION
 #define CETUS_ASSERT(Expr, Msg) if(!(Expr)) throw std::runtime_error(Msg);
 #else
 #define CETUS_ASSERT(Expr, Msg) assert(Expr && Msg)
 #endif
+
+}

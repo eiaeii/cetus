@@ -50,7 +50,7 @@ namespace terra
 			{
 				if (*it == val)
 				{
-					return (it - rend());
+					return rend() - it - 1;
 				}
 			}
 			return -1;
@@ -63,8 +63,8 @@ namespace terra
 			{
 				return index;
 			}
-			return push_unique(std::forward<T>(val));
+			push_back(std::forward<T>(val));
+			return size() - 1;
 		}
-		//heapify HeapPush
 	};
 }

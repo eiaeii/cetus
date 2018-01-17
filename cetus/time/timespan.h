@@ -42,7 +42,7 @@ namespace terra
 	*
 	* @see DateTime
 	*/
-	struct Timespan
+	class Timespan
 	{
 	private:
 
@@ -607,7 +607,7 @@ namespace terra
 		* @param Timespan The timespan to get the hash for.
 		* @return Hash value.
 		*/
-		friend uint32_t GetTypeHash(const Timespan& timespan);
+		//friend uint32_t GetTypeHash(const Timespan& timespan);
 
 	protected:
 

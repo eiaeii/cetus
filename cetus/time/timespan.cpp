@@ -1,7 +1,6 @@
 #include "timespan.h"
 #include "stringutil/stringutil.h"
 #include <vector>
-using namespace terra;
 
 //bool Timespan::Serialize(FArchive& Ar)
 //{
@@ -10,6 +9,8 @@ using namespace terra;
 //	return true;
 //}
 
+
+using namespace terra;
 
 std::string Timespan::ToString() const
 {
