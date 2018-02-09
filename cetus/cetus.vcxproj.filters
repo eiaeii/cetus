@@ -13,9 +13,6 @@
     <Filter Include="container">
       <UniqueIdentifier>{c7a620a7-a0a6-4fd8-a345-3e075e717a33}</UniqueIdentifier>
     </Filter>
-    <Filter Include="url">
-      <UniqueIdentifier>{037776bf-c74a-4d1b-92a8-2dc67e720d5a}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stringutil\stringutil.h">
@@ -37,12 +34,6 @@
     <ClInclude Include="container\vector_ex.h">
       <Filter>container</Filter>
     </ClInclude>
-    <ClInclude Include="url\url.h">
-      <Filter>url</Filter>
-    </ClInclude>
-    <ClInclude Include="url\url_config.h">
-      <Filter>url</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -54,9 +45,6 @@
     </ClCompile>
     <ClCompile Include="time\data_time.cpp">
       <Filter>time</Filter>
-    </ClCompile>
-    <ClCompile Include="url\url.cpp">
-      <Filter>url</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

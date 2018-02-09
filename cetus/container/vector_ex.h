@@ -28,7 +28,7 @@ namespace terra
 			index = this->find(val);
 			return index != -1;
 		}
-		size_type find(const T& val) const
+		difference_type find(const T& val) const
 		{
 			for (const_iterator it = begin(); it != end(); ++it)
 			{
@@ -44,7 +44,7 @@ namespace terra
 			index = this->find(val);
 			return index != -1;
 		}
-		size_type find_last(const T& val) const
+		difference_type find_last(const T& val) const
 		{
 			for (const_reverse_iterator it = rbegin(); it != rend(); ++it)
 			{

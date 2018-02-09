@@ -125,15 +125,12 @@
     <ClInclude Include="time\data_time.h" />
     <ClInclude Include="time\system_time.h" />
     <ClInclude Include="time\timespan.h" />
-    <ClInclude Include="url\url.h" />
-    <ClInclude Include="url\url_config.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="encode\base64.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="time\data_time.cpp" />
     <ClCompile Include="time\timespan.cpp" />
-    <ClCompile Include="url\url.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
