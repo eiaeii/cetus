@@ -1,6 +1,6 @@
 #pragma once
 
-#include "cetus_define.h"
+#include "core.h"
 
 namespace terra
 {

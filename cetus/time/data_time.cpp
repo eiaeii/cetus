@@ -15,7 +15,7 @@ const int32_t DateTime::kDaysToMonth[] = { 0, 31, 59, 90, 120, 151, 181, 212, 24
 
 DateTime::DateTime(int32_t year, int32_t month, int32_t day, int32_t hour, int32_t minute, int32_t second, int32_t millisecond)
 {
-	CETUS_ASSERT(Validate(year, month, day, hour, minute, second, millisecond), "invalid datetime");
+	Expects(Validate(year, month, day, hour, minute, second, millisecond));
 
 	int32_t total_days = 0;
 
@@ -232,7 +232,7 @@ std::string DateTime::ToString(const char* fmt) const
 
 int32_t DateTime::DaysInMonth(int32_t year, int32_t month)
 {
-	CETUS_ASSERT((month >= 1) && (month <= 12), "invalid month value");
+	Expects((month >= 1) && (month <= 12));
 
 	if ((month == 2) && IsLeapYear(year))
 	{

@@ -66,7 +66,7 @@ std::string Timespan::ToString(const char* fmt) const
 
 Timespan Timespan::FromDays(double days)
 {
-	CETUS_ASSERT((days >= MinValue().GetTotalDays()) && (days <= MaxValue().GetTotalDays()), "invalid day value");
+	Expects((days >= MinValue().GetTotalDays()) && (days <= MaxValue().GetTotalDays()));
 
 	return Timespan(static_cast<int64_t>(days * ETimespan::TicksPerDay));
 }
@@ -74,7 +74,7 @@ Timespan Timespan::FromDays(double days)
 
 Timespan Timespan::FromHours(double hours)
 {
-	CETUS_ASSERT((hours >= MinValue().GetTotalHours()) && (hours <= MaxValue().GetTotalHours()), "invalid hour value");
+	Expects((hours >= MinValue().GetTotalHours()) && (hours <= MaxValue().GetTotalHours()));
 
 	return Timespan(static_cast<int64_t>(hours * ETimespan::TicksPerHour));
 }
@@ -82,7 +82,7 @@ Timespan Timespan::FromHours(double hours)
 
 Timespan Timespan::FromMicroseconds(double microseconds)
 {
-	CETUS_ASSERT((microseconds >= MinValue().GetTotalMicroseconds()) && (microseconds <= MaxValue().GetTotalMicroseconds()), "invalid microseconds value");
+	Expects((microseconds >= MinValue().GetTotalMicroseconds()) && (microseconds <= MaxValue().GetTotalMicroseconds()));
 
 	return Timespan(static_cast<int64_t>(microseconds * ETimespan::TicksPerMicrosecond));
 }
@@ -90,7 +90,7 @@ Timespan Timespan::FromMicroseconds(double microseconds)
 
 Timespan Timespan::FromMilliseconds(double milliseconds)
 {
-	CETUS_ASSERT((milliseconds >= MinValue().GetTotalMilliseconds()) && (milliseconds <= MaxValue().GetTotalMilliseconds()), "invalid milliseconds value");
+	Expects((milliseconds >= MinValue().GetTotalMilliseconds()) && (milliseconds <= MaxValue().GetTotalMilliseconds()));
 
 	return Timespan(static_cast<int64_t>(milliseconds * ETimespan::TicksPerMillisecond));
 }
@@ -98,7 +98,7 @@ Timespan Timespan::FromMilliseconds(double milliseconds)
 
 Timespan Timespan::FromMinutes(double minutes)
 {
-	CETUS_ASSERT((minutes >= MinValue().GetTotalMinutes()) && (minutes <= MaxValue().GetTotalMinutes()), "invalid minutes value");
+	Expects((minutes >= MinValue().GetTotalMinutes()) && (minutes <= MaxValue().GetTotalMinutes()));
 
 	return Timespan(static_cast<int64_t>(minutes * ETimespan::TicksPerMinute));
 }
@@ -106,7 +106,7 @@ Timespan Timespan::FromMinutes(double minutes)
 
 Timespan Timespan::FromSeconds(double seconds)
 {
-	CETUS_ASSERT((seconds >= MinValue().GetTotalSeconds()) && (seconds <= MaxValue().GetTotalSeconds()), "invalid second value");
+	Expects((seconds >= MinValue().GetTotalSeconds()) && (seconds <= MaxValue().GetTotalSeconds()));
 
 	return Timespan(static_cast<int64_t>(seconds * ETimespan::TicksPerSecond));
 }
@@ -167,7 +167,7 @@ bool Timespan::Parse(const std::string& in_timespan_string, Timespan& out_timesp
 void Timespan::Assign(int32_t Days, int32_t Hours, int32_t Minutes, int32_t Seconds, int32_t Milliseconds, int32_t Microseconds)
 {
 	int64_t TotalTicks = ETimespan::TicksPerMicrosecond * (1000 * (1000 * (60 * 60 * 24 * (int64_t)Days + 60 * 60 * (int64_t)Hours + 60 * (int64_t)Minutes + (int64_t)Seconds) + (int64_t)Milliseconds) + (int64_t)Microseconds);
-	CETUS_ASSERT((TotalTicks >= MinValue().GetTicks()) && (TotalTicks <= MaxValue().GetTicks()), "invalid ticks value");
+	Expects((TotalTicks >= MinValue().GetTicks()) && (TotalTicks <= MaxValue().GetTicks()));
 
 	ticks_ = TotalTicks;
 }

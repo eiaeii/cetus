@@ -13,12 +13,20 @@
     <Filter Include="container">
       <UniqueIdentifier>{c7a620a7-a0a6-4fd8-a345-3e075e717a33}</UniqueIdentifier>
     </Filter>
+    <Filter Include="thread">
+      <UniqueIdentifier>{9bdcc522-17b3-48d6-88bf-04004c47c3d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guid">
+      <UniqueIdentifier>{4f3a182a-e536-4ad1-a596-f2d3c157ea08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="timer">
+      <UniqueIdentifier>{2e8fbdc7-c6b2-4699-97af-c323da4da3d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stringutil\stringutil.h">
       <Filter>stringutil</Filter>
     </ClInclude>
-    <ClInclude Include="cetus_define.h" />
     <ClInclude Include="time\timespan.h">
       <Filter>time</Filter>
     </ClInclude>
@@ -34,6 +42,44 @@
     <ClInclude Include="container\vector_ex.h">
       <Filter>container</Filter>
     </ClInclude>
+    <ClInclude Include="core.h" />
+    <ClInclude Include="gsl_assert.h" />
+    <ClInclude Include="container\mpsc_queue.h">
+      <Filter>stringutil</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\runnable.h">
+      <Filter>thread</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\runnable_thread.h">
+      <Filter>thread</Filter>
+    </ClInclude>
+    <ClInclude Include="delegate.h" />
+    <ClInclude Include="container\dynamic_bitset.h">
+      <Filter>container</Filter>
+    </ClInclude>
+    <ClInclude Include="enum_as_byte.h" />
+    <ClInclude Include="container\intrusive_list.h">
+      <Filter>container</Filter>
+    </ClInclude>
+    <ClInclude Include="container\ringbuffer.h">
+      <Filter>container</Filter>
+    </ClInclude>
+    <ClInclude Include="timer\timekeeper.h">
+      <Filter>timer</Filter>
+    </ClInclude>
+    <ClInclude Include="timer\timer.h">
+      <Filter>timer</Filter>
+    </ClInclude>
+    <ClInclude Include="guid\fguid.h">
+      <Filter>guid</Filter>
+    </ClInclude>
+    <ClInclude Include="guid\snowflake.h">
+      <Filter>guid</Filter>
+    </ClInclude>
+    <ClInclude Include="type_traits_ex.h" />
+    <ClInclude Include="event_static.h" />
+    <ClInclude Include="event_dynamic.h" />
+    <ClInclude Include="self_register.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -45,6 +91,24 @@
     </ClCompile>
     <ClCompile Include="time\data_time.cpp">
       <Filter>time</Filter>
+    </ClCompile>
+    <ClCompile Include="thread\runnable_thread.cpp">
+      <Filter>thread</Filter>
+    </ClCompile>
+    <ClCompile Include="container\dynamic_bitset.cpp">
+      <Filter>container</Filter>
+    </ClCompile>
+    <ClCompile Include="container\ringbuffer.cpp">
+      <Filter>container</Filter>
+    </ClCompile>
+    <ClCompile Include="timer\timer.cpp">
+      <Filter>timer</Filter>
+    </ClCompile>
+    <ClCompile Include="guid\fguid.cpp">
+      <Filter>guid</Filter>
+    </ClCompile>
+    <ClCompile Include="guid\snowflake.cpp">
+      <Filter>guid</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
