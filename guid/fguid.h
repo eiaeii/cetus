@@ -2,7 +2,8 @@
 
 // Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 
-#include "core.h"
+#include <cstdint>
+#include <type_traits>
 #include "gsl_assert.h"
 
 namespace terra
@@ -271,6 +272,7 @@ namespace terra
 		uint32_t D;
 	};
 
+
 	namespace Lex
 	{
 		/**
@@ -324,4 +326,16 @@ namespace terra
 	};
 
 	static_assert(std::is_standard_layout<FGuid>::value, "not pod type!");
+}
+
+
+namespace std {
+	template<> struct hash<terra::FGuid>
+	{
+		size_t operator()(const terra::FGuid& guid) const noexcept {
+			const uint64_t* p = reinterpret_cast<const uint64_t*>(&guid);
+			std::hash<uint64_t> hash;
+			return hash(p[0]) ^ hash(p[1]);
+		}
+	};
 }

@@ -135,7 +135,7 @@ namespace terra
 		{
 			va_list apcopy;
 			va_copy(apcopy, ap);
-			int size = ::vsnprintf(nullptr, 0, fmt, ap);   // 计算需要的内存空间
+			int size = ::vsnprintf(nullptr, 0, fmt, ap);  //caculate the memory space we need
 			if (size <= 0)
 			{
 				return size;

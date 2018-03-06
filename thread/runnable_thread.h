@@ -25,7 +25,7 @@ namespace terra
 			//}
 		}
 
-		static RunnableThread* CreateThread(Runnable* runnable, const char* thread_name);
+		static std::unique_ptr<RunnableThread> CreateThread(Runnable* runnable, const char* thread_name);
 
 		virtual void PreRun() { }
 		virtual void PostRun() { }

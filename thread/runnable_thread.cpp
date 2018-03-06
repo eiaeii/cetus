@@ -2,15 +2,14 @@
 
 using namespace terra;
 
-RunnableThread* RunnableThread::CreateThread(Runnable* runnable, const char* thread_name)
+std::unique_ptr<RunnableThread> RunnableThread::CreateThread(Runnable* runnable, const char* thread_name)
 {
-	RunnableThread* new_thread = new RunnableThread();
+	std::unique_ptr<RunnableThread>  new_thread = std::make_unique<RunnableThread>();
 	if (new_thread)
 	{
 		if (!new_thread->CreateInternal(runnable, thread_name))
 		{
-			delete new_thread;
-			new_thread = nullptr;
+			new_thread.reset(nullptr);
 		}
 	}
 	return new_thread;
