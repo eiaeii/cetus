@@ -17,6 +17,8 @@
 
 #include <cmath>
 
+#include "global_macro.h"
+
 #include "guid/fguid.h"
 
 #include "gsl_assert.h"

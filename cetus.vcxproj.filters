@@ -80,6 +80,7 @@
     <ClInclude Include="event_static.h" />
     <ClInclude Include="event_dynamic.h" />
     <ClInclude Include="self_register.h" />
+    <ClInclude Include="global_macro.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

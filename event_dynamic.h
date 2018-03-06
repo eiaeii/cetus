@@ -2,6 +2,7 @@
 
 #include <functional>
 #include <memory>
+#include "type_traits_ex.h"
 
 namespace terra
 {
@@ -16,8 +17,9 @@ namespace terra
         template <typename... Args>
         struct wrapped : base {
             typedef std::function<void(Args...)> func_type;
-            func_type f;
-            wrapped(func_type&& aFunc) : f(aFunc){};
+			func_type f;
+			wrapped(const func_type& aFunc) : f(aFunc) {};
+			wrapped(func_type&& aFunc) : f(std::move(aFunc)) {};
         };
 
         std::unique_ptr<base> base_;
@@ -34,8 +36,6 @@ namespace terra
             return *this;
         };
 
-        // universal forwarding will deduce int to int& and it will confuse the user.
-        // maybe it is not a good idea to use std::forward here.
         template <typename... Args>
         void operator()(Args... args) const
         {
@@ -45,6 +45,7 @@ namespace terra
 				p_wrapped->f(args...);
             else
                 throw std::runtime_error("Invalid arguments to function object call!");
+			 
         };
     };
 }
