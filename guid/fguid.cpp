@@ -1,7 +1,7 @@
 // Copyright 1998-2017 Epic Games, Inc. All Rights Reserved.
 
 #include "fguid.h"
-#include "stringutil/stringutil.h"
+#include "util/string_util.h"
 #ifdef _WIN32
 #include <combaseapi.h>
 #else

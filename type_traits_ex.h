@@ -39,4 +39,7 @@ namespace terra
 	{
 		enum { value = std::is_enum<T>::value && !std::is_convertible<T, int>::value };
 	};
+
+	template <typename T>
+	using is_vector = std::is_same<T, std::vector< typename T::value_type, typename T::allocator_type > >;
 }

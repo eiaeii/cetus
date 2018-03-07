@@ -1,5 +1,5 @@
 #include "timespan.h"
-#include "stringutil/stringutil.h"
+#include "util/string_util.h"
 #include <vector>
 
 //bool Timespan::Serialize(FArchive& Ar)

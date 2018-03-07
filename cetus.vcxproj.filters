@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="stringutil">
-      <UniqueIdentifier>{f7b1f85d-399d-4f6c-8eeb-2270090909a7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="time">
       <UniqueIdentifier>{fe6c30db-95fc-48dc-b155-71a9952a5f88}</UniqueIdentifier>
     </Filter>
@@ -22,11 +19,11 @@
     <Filter Include="timer">
       <UniqueIdentifier>{2e8fbdc7-c6b2-4699-97af-c323da4da3d3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="util">
+      <UniqueIdentifier>{f7b1f85d-399d-4f6c-8eeb-2270090909a7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="stringutil\stringutil.h">
-      <Filter>stringutil</Filter>
-    </ClInclude>
     <ClInclude Include="time\timespan.h">
       <Filter>time</Filter>
     </ClInclude>
@@ -39,14 +36,8 @@
     <ClInclude Include="time\system_time.h">
       <Filter>time</Filter>
     </ClInclude>
-    <ClInclude Include="container\vector_ex.h">
-      <Filter>container</Filter>
-    </ClInclude>
     <ClInclude Include="core.h" />
     <ClInclude Include="gsl_assert.h" />
-    <ClInclude Include="container\mpsc_queue.h">
-      <Filter>stringutil</Filter>
-    </ClInclude>
     <ClInclude Include="thread\runnable.h">
       <Filter>thread</Filter>
     </ClInclude>
@@ -81,6 +72,15 @@
     <ClInclude Include="event_dynamic.h" />
     <ClInclude Include="self_register.h" />
     <ClInclude Include="global_macro.h" />
+    <ClInclude Include="container\mpsc_queue.h">
+      <Filter>container</Filter>
+    </ClInclude>
+    <ClInclude Include="util\string_util.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="util\vector_util.h">
+      <Filter>util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

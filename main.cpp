@@ -1,25 +1,10 @@
 
-#include "stringutil/stringutil.h"
+#include "util/string_util.h"
 #include "encode/base64.h"
 #include "time/data_time.h"
-#include "container/vector_ex.h"
 using namespace terra;
 int main()
 {
-	TVector<int> vec;
-	vec.push_unique(1);
-	vec.push_unique(1);
-	vec.push_unique(2);
-	vec.push_unique(3);
-	for (auto&& v : vec)
-	{
-		std::cout << v << std::endl;
-	}
-	vec.push_back(3);
-	vec.push_back(3);
-	vec.push_back(4);
-	
-	std::cout << vec.find(3) << std::ends << vec.find_last(3) << std::endl;
 
 	std::string str;
 	auto v = str.find_last_of('t');

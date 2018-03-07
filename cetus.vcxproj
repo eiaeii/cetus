@@ -129,7 +129,6 @@
     <ClInclude Include="container\mpsc_queue.h" />
     <ClInclude Include="container\ringbuffer.h" />
     <ClInclude Include="core.h" />
-    <ClInclude Include="container\vector_ex.h" />
     <ClInclude Include="delegate.h" />
     <ClInclude Include="encode\base64.h" />
     <ClInclude Include="enum_as_byte.h" />
@@ -140,7 +139,6 @@
     <ClInclude Include="guid\fguid.h" />
     <ClInclude Include="guid\snowflake.h" />
     <ClInclude Include="self_register.h" />
-    <ClInclude Include="stringutil\stringutil.h" />
     <ClInclude Include="thread\runnable.h" />
     <ClInclude Include="thread\runnable_thread.h" />
     <ClInclude Include="timer\timekeeper.h" />
@@ -149,6 +147,8 @@
     <ClInclude Include="time\system_time.h" />
     <ClInclude Include="time\timespan.h" />
     <ClInclude Include="type_traits_ex.h" />
+    <ClInclude Include="util\string_util.h" />
+    <ClInclude Include="util\vector_util.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="container\dynamic_bitset.cpp" />

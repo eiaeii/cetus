@@ -4,7 +4,8 @@
 #include <cassert>
 #include <cstdint>
 #include <cstdlib>
-#include <stdarg.h>
+#include <cstddef>
+#include <cstdarg>
 #include <functional>
 #include <type_traits>
 #include <memory>
@@ -16,6 +17,7 @@
 #include <chrono>
 #include <thread>
 
+#include <algorithm>
 #include <cmath>
 
 #include "global_macro.h"
@@ -23,3 +25,7 @@
 #include "guid/fguid.h"
 
 #include "gsl_assert.h"
+#include "type_traits_ex.h"
+
+
+typedef std::make_signed<size_t>::type ssize_t;

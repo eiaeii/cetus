@@ -1,6 +1,6 @@
 #include "data_time.h"
 #include "system_time.h"
-#include "stringutil/stringutil.h"
+#include "util/string_util.h"
 using namespace terra;
 
 /* DateTime constants
