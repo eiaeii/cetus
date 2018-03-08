@@ -10,15 +10,11 @@ namespace terra
 	private:
 		std::string thread_name_;
 		Runnable* runnable_{ nullptr };
-		std::thread* t_{ nullptr };
+		std::thread t_;
 	public:
 		~RunnableThread()
 		{
-			if (t_)
-			{
-				Kill();
-				delete t_;
-			}
+			Kill();
 			//if (!GIsRequestingExit)
 			//{
 			//	FThreadManager::Get().RemoveThread(this);
@@ -54,18 +50,18 @@ namespace terra
 			{
 				runnable_->Stop();
 			}
-			if (t_ && t_->joinable())
+			if (t_.joinable())
 			{
-				t_->join();
+				t_.join();
 			}
 			return true;
 		}
 
 		void WaitForCompletion()
 		{
-			if (t_ && t_->joinable())
+			if (t_.joinable())
 			{
-				t_->join();
+				t_.join();
 			}
 		}
 
