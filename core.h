@@ -16,6 +16,7 @@
 #include <unordered_set>
 #include <chrono>
 #include <thread>
+#include <sstream>
 
 #include <algorithm>
 #include <cmath>
