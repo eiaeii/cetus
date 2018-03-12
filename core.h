@@ -20,13 +20,13 @@
 
 #include <algorithm>
 #include <cmath>
-
+#include <limits>
 #include "global_macro.h"
 
 #include "guid/fguid.h"
 
 #include "gsl_assert.h"
 #include "type_traits_ex.h"
-
+#include "math/math_ex.h"
 
 typedef std::make_signed<size_t>::type ssize_t;

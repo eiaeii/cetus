@@ -22,6 +22,12 @@
     <Filter Include="util">
       <UniqueIdentifier>{f7b1f85d-399d-4f6c-8eeb-2270090909a7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="math">
+      <UniqueIdentifier>{c89811d5-eef7-4303-bc98-7e30be17de89}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="stream">
+      <UniqueIdentifier>{930c1be2-2b89-4e5d-8363-1c6db5f836f3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="time\timespan.h">
@@ -81,6 +87,12 @@
     <ClInclude Include="util\vector_util.h">
       <Filter>util</Filter>
     </ClInclude>
+    <ClInclude Include="container\dynamic_buffer.h">
+      <Filter>container</Filter>
+    </ClInclude>
+    <ClInclude Include="math\math_ex.h">
+      <Filter>math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -111,5 +123,6 @@
     <ClCompile Include="guid\snowflake.cpp">
       <Filter>guid</Filter>
     </ClCompile>
+    <ClCompile Include="container\dynamic_buffer.cpp" />
   </ItemGroup>
 </Project>
