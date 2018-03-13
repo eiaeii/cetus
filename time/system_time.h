@@ -1,9 +1,9 @@
 #pragma once
 
 #include <cstdint>
-#if defined(PLATFORM_WINDOWS)
+#ifdef _WIN32
 #include <windows.h>
-#elif  defined(PLATFORM_LINUX)
+#else
 #include <sys/time.h>
 #endif
 namespace terra
@@ -13,7 +13,7 @@ namespace terra
 		//FixMe!
 		static void LocalTime(int32_t& Year, int32_t& Month, int32_t& DayOfWeek, int32_t& Day, int32_t& Hour, int32_t& Min, int32_t& Sec, int32_t& MSec)
 		{
-#if defined(PLATFORM_WINDOWS)
+#ifdef _WIN32
 			SYSTEMTIME st;
 			GetLocalTime(&st);
 
@@ -25,7 +25,7 @@ namespace terra
 			Min = st.wMinute;
 			Sec = st.wSecond;
 			MSec = st.wMilliseconds;
-#elif  defined(PLATFORM_LINUX)
+#else
 			// query for calendar time
 			struct timeval Time;
 			gettimeofday(&Time, NULL);
@@ -47,7 +47,7 @@ namespace terra
 		}
 		static void UtcTime(int32_t& Year, int32_t& Month, int32_t& DayOfWeek, int32_t& Day, int32_t& Hour, int32_t& Min, int32_t& Sec, int32_t& MSec)
 		{
-#if defined(PLATFORM_WINDOWS)
+#if defined(_WIN32)
 			SYSTEMTIME st;
 			GetSystemTime(&st);
 
@@ -59,7 +59,7 @@ namespace terra
 			Min = st.wMinute;
 			Sec = st.wSecond;
 			MSec = st.wMilliseconds;
-#elif  defined(PLATFORM_LINUX)
+#else
 			// query for calendar time
 			struct timeval Time;
 			gettimeofday(&Time, NULL);

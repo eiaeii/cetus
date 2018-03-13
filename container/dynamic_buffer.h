@@ -13,13 +13,14 @@ namespace terra
 		uint32_t used_{ 0 };
 		uint32_t free_{ 0 };
 	public:
-		DynamicBuffer(uint32_t size = kInitialBufferSize);
+		DynamicBuffer(uint32_t capacity = kInitialBufferSize);
 		~DynamicBuffer();
 
 		void ReserveBuffer(uint32_t size);
 
-		char* Buffer() { return buffer_ + used_; }
-		const char* Buffer() const { return buffer_ + used_; }
+		char* Back() { return buffer_ + used_; }
+		const char* GetBuffer() const { return buffer_; }
+		uint32_t Size() const { return used_; }
 		uint32_t Capacity() const { return capacity_; }
 		void BufferConsumed(uint32_t size);
 

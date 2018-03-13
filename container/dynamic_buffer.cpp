@@ -16,15 +16,15 @@ DynamicBuffer::~DynamicBuffer()
 	delete[] buffer_;
 }
 
-void DynamicBuffer::ReserveBuffer(uint32_t size)
+void DynamicBuffer::ReserveBuffer(uint32_t capacity)
 {
 	used_ = 0;
 	free_ = capacity_;
-	if (free_ >= size)
+	if (free_ >= capacity)
 	{
 		return;
 	}
-	ExpandBuffer(size);
+	ExpandBuffer(capacity);
 }
 
 void terra::DynamicBuffer::BufferConsumed(uint32_t size)
@@ -33,11 +33,11 @@ void terra::DynamicBuffer::BufferConsumed(uint32_t size)
 	free_ -= size;
 }
 
-void DynamicBuffer::ExpandBuffer(uint32_t size)
+void DynamicBuffer::ExpandBuffer(uint32_t capacity)
 {
-	Expects(size <= std::numeric_limits<int>::max());
+	Expects(capacity <= std::numeric_limits<uint32_t>::max()/2);
 	uint32_t alloc_size = capacity_;
-	while ((alloc_size - used_) > size)
+	while ((alloc_size - used_) > capacity)
 	{
 		alloc_size *= 2;
 	}
