@@ -145,6 +145,8 @@
     <ClInclude Include="self_register.h" />
     <ClInclude Include="thread\runnable.h" />
     <ClInclude Include="thread\runnable_thread.h" />
+    <ClInclude Include="thread\thread_pool.hpp" />
+    <ClInclude Include="thread\thread_safe_queue.hpp" />
     <ClInclude Include="timer\timekeeper.h" />
     <ClInclude Include="timer\timer.h" />
     <ClInclude Include="time\data_time.h" />
