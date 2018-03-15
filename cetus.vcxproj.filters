@@ -93,6 +93,12 @@
     <ClInclude Include="math\math_ex.h">
       <Filter>math</Filter>
     </ClInclude>
+    <ClInclude Include="thread\thread_pool.hpp">
+      <Filter>thread</Filter>
+    </ClInclude>
+    <ClInclude Include="thread\thread_safe_queue.hpp">
+      <Filter>thread</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
