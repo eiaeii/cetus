@@ -34,7 +34,7 @@ namespace terra
 	class TQueue
 	{
 	public:
-		static_assert(std::atomic<ItemType>{}.is_lock_free(), "must be lock-free");
+		//assert(std::atomic<ItemType>{}.is_lock_free(), "must be lock-free");
 		/** Default constructor. */
 		TQueue() : head_(new TNode()), tail_(head_.load()) {}
 

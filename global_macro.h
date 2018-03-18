@@ -29,12 +29,12 @@ public:                                              \
 #define FILENAME(x) strrchr(x, '/') ? strrchr(x, '/') + 1 : x
 #endif
 
-#define LEVEL_DEFAUT "\033[0m"
-#define LEVEL_INFO "\033[32m"
-#define LEVEL_WARNING "\033[33m"
-#define LEVEL_ERROR "\033[31m"
-#define LEVEL_BLUE "\033[34m"
-#define LEVEL_PURPLE "\033[35m"
+#define LEVEL_DEFAUT	""	//"\033[0m"
+#define LEVEL_INFO		""	//"\033[32m"
+#define LEVEL_WARNING	""	//"\033[33m"
+#define LEVEL_ERROR		""	//"\033[31m"
+#define LEVEL_BLUE		""	//"\033[34m"
+#define LEVEL_PURPLE	""	//"\033[35m"
 
 #ifndef NDEBUG
 #define CONSOLE_DEBUG_LOG(level, ...)                                       \
