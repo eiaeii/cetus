@@ -64,7 +64,6 @@ namespace terra
 				t_.join();
 			}
 		}
-
 	protected:
 		bool CreateInternal(Runnable* runnable, const char* thread_name);
 	};

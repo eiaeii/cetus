@@ -18,6 +18,7 @@
 #include <unordered_set>
 #include <chrono>
 #include <thread>
+#include <atomic>
 #include <sstream>
 
 #include <algorithm>

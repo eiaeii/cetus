@@ -25,6 +25,5 @@ bool RunnableThread::CreateInternal(Runnable* runnable, const char* thread_name)
 		this->Run();
 		this->PostRun();
 	});
-	t_.detach();
 	return true;
 }
