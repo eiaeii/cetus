@@ -28,6 +28,9 @@
     <Filter Include="stream">
       <UniqueIdentifier>{930c1be2-2b89-4e5d-8363-1c6db5f836f3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="module">
+      <UniqueIdentifier>{284543f7-b438-4873-8e1d-d3617e8ec2a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="time\timespan.h">
@@ -76,7 +79,6 @@
     <ClInclude Include="type_traits_ex.h" />
     <ClInclude Include="event_static.h" />
     <ClInclude Include="event_dynamic.h" />
-    <ClInclude Include="self_register.h" />
     <ClInclude Include="global_macro.h" />
     <ClInclude Include="container\mpsc_queue.h">
       <Filter>container</Filter>
@@ -98,6 +100,15 @@
     </ClInclude>
     <ClInclude Include="thread\thread_safe_queue.hpp">
       <Filter>thread</Filter>
+    </ClInclude>
+    <ClInclude Include="module\module_interface.h">
+      <Filter>module</Filter>
+    </ClInclude>
+    <ClInclude Include="module\self_auto_register.h">
+      <Filter>module</Filter>
+    </ClInclude>
+    <ClInclude Include="module\module_manager.h">
+      <Filter>module</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

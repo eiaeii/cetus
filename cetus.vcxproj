@@ -142,7 +142,9 @@
     <ClInclude Include="guid\fguid.h" />
     <ClInclude Include="guid\snowflake.h" />
     <ClInclude Include="math\math_ex.h" />
-    <ClInclude Include="self_register.h" />
+    <ClInclude Include="module\module_interface.h" />
+    <ClInclude Include="module\module_manager.h" />
+    <ClInclude Include="module\self_auto_register.h" />
     <ClInclude Include="thread\runnable.h" />
     <ClInclude Include="thread\runnable_thread.h" />
     <ClInclude Include="thread\thread_pool.hpp" />
