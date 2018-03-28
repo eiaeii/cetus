@@ -26,6 +26,8 @@ namespace terra
 		struct tuple_match_impl<false, std::tuple<Ts...>, Us...> : std::false_type {};
 
 	}
+	template<typename... Ts> struct make_void { typedef void type; };
+	template<typename... Ts> using void_t = typename make_void<Ts...>::type;
 
 	template<typename T, typename... Us>
 	struct tuple_match : std::false_type {};

@@ -141,5 +141,6 @@
       <Filter>guid</Filter>
     </ClCompile>
     <ClCompile Include="container\dynamic_buffer.cpp" />
+    <ClCompile Include="module\module_manager.cpp" />
   </ItemGroup>
 </Project>

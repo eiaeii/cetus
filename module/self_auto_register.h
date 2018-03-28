@@ -10,10 +10,9 @@ namespace terra
     class SelfAutoRegister
     {
     public:
-        static bool AutoRegister(const char* module_name)
+        static inline bool AutoRegister()
         {
-			//ModuleManager::GetInstance().RegisterModule(module_name, ...)
-            T::GetInstance();
+			ModuleManager::GetInstance()->RegisterModule(T::ClassName(), T::GetInstance());
             return true;
         }
     };
@@ -25,5 +24,5 @@ namespace terra
     // the bool variable will be optimize in release mode, so it does not matter.
 #define REG_INSTANCE_MOUDLE(class_name) \
     \
-static bool class_name##_singleton_register = TAutoRegister<class_name>::AutoRegister(#class_name);
+static bool class_name##_singleton_register = SelfAutoRegister<class_name>::AutoRegister()
 }
