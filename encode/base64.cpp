@@ -61,7 +61,7 @@ bool Base64Encoding::Decode(const std::string& source, std::vector<uint8_t>& des
 	dest.reserve(expected_length);
 	uint8_t* buffer = dest.data();
 	uint32_t pad_count = 0;
-	bool success = Decode(source.c_str(), len, dest.data(), pad_count);
+	bool success = Decode(source.c_str(), len, buffer, pad_count);
 	if (success)
 	{
 		if (pad_count > 0)

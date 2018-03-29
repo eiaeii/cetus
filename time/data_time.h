@@ -674,7 +674,7 @@ namespace terra
 		* @param DateTime The date and time to get the hash for.
 		* @return Hash value.
 		*/
-		friend size_t GetTypeHash(const DateTime& DateTime);
+		friend size_t GetTypeHash(const DateTime& dt);
 	};
 
 }

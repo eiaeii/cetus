@@ -775,8 +775,8 @@ bool DateTime::Validate(int32_t year, int32_t month, int32_t day, int32_t hour, 
 //	return Ar << DateTime.ticks_;
 //}
 
-size_t terra::GetTypeHash(const DateTime & DateTime)
+size_t GetTypeHash(const DateTime& dt)
 {
-	int64_t val = DateTime.ticks_;
+	int64_t val = dt.GetTicks();
 	return std::hash<int64_t>()(val);
 }

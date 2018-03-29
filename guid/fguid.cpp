@@ -39,14 +39,14 @@ std::string FGuid::ToString(EGuidFormats Format) const
 
 FGuid FGuid::NewGuid()
 {
+	FGuid Result(0, 0, 0, 0);
 #ifdef _WIN32
-	FGuid Result(0, 0, 0, 0); 
-	Expects(::CoCreateGuid((GUID*)&Result) == S_OK);
+	HRESULT ret = ::CoCreateGuid((GUID*)&Result);
+	Ensures(ret == S_OK);
 #else
 	uuid_t UUID;
 	uuid_generate(UUID);
-
-	uint32* Values = (uint32*)(&UUID[0]);
+	uint32_t* Values = (uint32_t*)(&UUID[0]);
 	Result[0] = Values[0];
 	Result[1] = Values[1];
 	Result[2] = Values[2];
