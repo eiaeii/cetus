@@ -110,6 +110,9 @@
     <ClInclude Include="module\module_manager.h">
       <Filter>module</Filter>
     </ClInclude>
+    <ClInclude Include="util\debug_util.h">
+      <Filter>util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

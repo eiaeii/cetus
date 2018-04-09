@@ -1,6 +1,5 @@
 #include "module_manager.h"
 #include "gsl_assert.h"
-
 using namespace terra;
 
 void ModuleManager::RegisterModule(const char* module_name, IModule* md)
@@ -9,20 +8,38 @@ void ModuleManager::RegisterModule(const char* module_name, IModule* md)
 	modules_[module_name] = md;
 }
 
-void ModuleManager::Awake()
+bool terra::ModuleManager::Running() const
 {
-	for (auto&& kv : modules_)
-	{
-		(kv.second)->Awake();
-	}
+	return running_;
 }
 
-void ModuleManager::Init()
+void ModuleManager::Stop()
+{
+	running_ = false;
+}
+
+bool ModuleManager::Awake()
 {
 	for (auto&& kv : modules_)
 	{
-		(kv.second)->Init();
+		if(!(kv.second)->Awake())
+		{
+			return false;
+		}
 	}
+	return true;
+}
+
+bool ModuleManager::Init()
+{
+	for (auto&& kv : modules_)
+	{
+		if (!(kv.second)->Init())
+		{
+			return false;
+		}
+	}
+	return true;
 }
 
 void ModuleManager::PreUpdate()

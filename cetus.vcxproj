@@ -155,6 +155,7 @@
     <ClInclude Include="time\system_time.h" />
     <ClInclude Include="time\timespan.h" />
     <ClInclude Include="type_traits_ex.h" />
+    <ClInclude Include="util\debug_util.h" />
     <ClInclude Include="util\string_util.h" />
     <ClInclude Include="util\vector_util.h" />
   </ItemGroup>

@@ -10,18 +10,23 @@ namespace terra
 		MAKE_INSTANCE(ModuleManager)
 	private:
 		std::map<std::string, IModule*> modules_;
+		bool running_{ false };
 	public:
 		void RegisterModule(const char* module_name, IModule* md);
 		template<typename T>
 		T* FindModule();
 
-		virtual void Awake() override;
-		virtual void Init() override;
+		virtual bool Running() const override;
+		virtual void Stop() override;
+
+		virtual bool Awake() override;
+		virtual bool Init() override;
+		virtual void Exit() override;
+		virtual void Destroy() override;
+
 		virtual void PreUpdate() override;
 		virtual void Update() override;
 		virtual void PostUpdate() override;
-		virtual void Exit() override;
-		virtual void Destroy() override;
 	};
 	template<typename T>
 	T* ModuleManager::FindModule()
