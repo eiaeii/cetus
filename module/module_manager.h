@@ -10,14 +10,14 @@ namespace terra
 		MAKE_INSTANCE(ModuleManager)
 	private:
 		std::map<std::string, IModule*> modules_;
-		bool running_{ false };
+		bool running_{ true };
 	public:
 		void RegisterModule(const char* module_name, IModule* md);
 		template<typename T>
 		T* FindModule();
 
 		virtual bool Running() const override;
-		virtual void Stop() override;
+		virtual void Stop(bool run) override;
 
 		virtual bool Awake() override;
 		virtual bool Init() override;

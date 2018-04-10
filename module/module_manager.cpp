@@ -13,9 +13,9 @@ bool terra::ModuleManager::Running() const
 	return running_;
 }
 
-void ModuleManager::Stop()
+void ModuleManager::Stop(bool run)
 {
-	running_ = false;
+	running_ = run;
 }
 
 bool ModuleManager::Awake()

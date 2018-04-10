@@ -9,7 +9,7 @@ namespace terra
 		virtual ~IModule() = default;
 
 		virtual bool Running() const { return true; }
-		virtual void Stop() {}
+		virtual void Stop(bool run) {}
 
 		virtual bool Awake() = 0;
 		virtual bool Init() = 0;
