@@ -134,6 +134,11 @@
     <ClInclude Include="core.h" />
     <ClInclude Include="delegate.h" />
     <ClInclude Include="encode\base64.h" />
+    <ClInclude Include="entity\origin_module_interface.h" />
+    <ClInclude Include="entity\origin_component.h" />
+    <ClInclude Include="entity\origin_entity.h" />
+    <ClInclude Include="entity\origin_util.h" />
+    <ClInclude Include="entity\origin_component_auto_register.h" />
     <ClInclude Include="enum_as_byte.h" />
     <ClInclude Include="event_dynamic.h" />
     <ClInclude Include="event_static.h" />
@@ -142,9 +147,6 @@
     <ClInclude Include="guid\fguid.h" />
     <ClInclude Include="guid\snowflake.h" />
     <ClInclude Include="math\math_ex.h" />
-    <ClInclude Include="module\module_interface.h" />
-    <ClInclude Include="module\module_manager.h" />
-    <ClInclude Include="module\self_auto_register.h" />
     <ClInclude Include="thread\runnable.h" />
     <ClInclude Include="thread\runnable_thread.h" />
     <ClInclude Include="thread\thread_pool.hpp" />
@@ -164,10 +166,10 @@
     <ClCompile Include="container\dynamic_buffer.cpp" />
     <ClCompile Include="container\ringbuffer.cpp" />
     <ClCompile Include="encode\base64.cpp" />
+    <ClCompile Include="entity\origin_entity.cpp" />
     <ClCompile Include="guid\fguid.cpp" />
     <ClCompile Include="guid\snowflake.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="module\module_manager.cpp" />
     <ClCompile Include="thread\runnable_thread.cpp" />
     <ClCompile Include="timer\timer.cpp" />
     <ClCompile Include="time\data_time.cpp" />

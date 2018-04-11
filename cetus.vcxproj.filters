@@ -28,8 +28,8 @@
     <Filter Include="stream">
       <UniqueIdentifier>{930c1be2-2b89-4e5d-8363-1c6db5f836f3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="module">
-      <UniqueIdentifier>{284543f7-b438-4873-8e1d-d3617e8ec2a3}</UniqueIdentifier>
+    <Filter Include="entity">
+      <UniqueIdentifier>{e885f14e-c91d-4051-a085-740320af74c4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -101,17 +101,23 @@
     <ClInclude Include="thread\thread_safe_queue.hpp">
       <Filter>thread</Filter>
     </ClInclude>
-    <ClInclude Include="module\module_interface.h">
-      <Filter>module</Filter>
-    </ClInclude>
-    <ClInclude Include="module\self_auto_register.h">
-      <Filter>module</Filter>
-    </ClInclude>
-    <ClInclude Include="module\module_manager.h">
-      <Filter>module</Filter>
-    </ClInclude>
     <ClInclude Include="util\debug_util.h">
       <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="entity\origin_component.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="entity\origin_entity.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="entity\origin_util.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="entity\origin_component_auto_register.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="entity\origin_module_interface.h">
+      <Filter>entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +150,8 @@
       <Filter>guid</Filter>
     </ClCompile>
     <ClCompile Include="container\dynamic_buffer.cpp" />
-    <ClCompile Include="module\module_manager.cpp" />
+    <ClCompile Include="entity\origin_entity.cpp">
+      <Filter>entity</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -11,8 +11,7 @@ public:                             \
     {                               \
         static classname obj;       \
         return &obj;                \
-    }                               \
-    static constexpr const char* ClassName() { return #classname; }
+    }                               
 
 #define DISABLE_COPY(classname)                      \
     \
