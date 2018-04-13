@@ -1,19 +1,20 @@
 #pragma once
 
 #include <type_traits>
-#include "origin_module_interface.h"
 #include "origin_entity.h"
 
 namespace terra
 {
     template <typename C>
-    class OriginComponentAutoRegister
+    class SingletonComponentAutoRegister
     {
     public:
-        static inline bool AutoRegister()
+		template<typename E>
+        static inline bool AutoRegister(E* ent)
         {
-			TERRA_ASSERT_IS_ORIGIN_COMPONENT(C);
-			OriginEntity::Get()->Add<C>();
+			TERRA_ASSERT_IS_ENTITY(E);
+			TERRA_ASSERT_IS_COMPONENT(C);
+			ent->Add<C>();
             return true;
         }
     };
@@ -23,7 +24,7 @@ namespace terra
     */
 
     // the bool variable will be optimize in release mode, so it does not matter.
-#define REG_ORIGIN_COMPONENT(class_name) \
+#define REG_SINGLETON_COMPONENT(class_name, entity_pointer) \
     \
-static bool class_name##_singleton_register = OriginComponentAutoRegister<class_name>::AutoRegister()
+static bool class_name##_singleton_register = SingletonComponentAutoRegister<class_name>::AutoRegister(entity_pointer)
 }

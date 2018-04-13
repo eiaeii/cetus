@@ -1,15 +1,15 @@
 #include "origin_entity.h"
-#include "origin_component.h"
+#include "component.h"
 
 using namespace terra;
 
 OriginEntity* OriginEntity::default_instance_ = nullptr;
 
-OriginEntity* OriginEntity::Get()
+OriginEntity* OriginEntity::GetInstance()
 {
 	if (!default_instance_)
 	{
-		default_instance_ = new OriginEntity(FGuid::NewGuid());
+		default_instance_ = new OriginEntity();
 	}
 	return default_instance_;
 }
@@ -20,11 +20,10 @@ void OriginEntity::Destroy()
 }
 
 
-OriginEntity::OriginEntity(const FGuid& unique_id) : guid_(unique_id) , running_(true) {}
+OriginEntity::OriginEntity(){}
 
 OriginEntity::~OriginEntity()
 {
-	DestroyAllComponent();
 }
 
 bool OriginEntity::Awake()
@@ -55,7 +54,10 @@ void OriginEntity::PreUpdate()
 {
 	for (auto&& kv : components_)
 	{
-		(kv.second)->PreUpdate();
+		if (kv.second->CanUpdate())
+		{
+			(kv.second)->PreUpdate();
+		}
 	}
 }
 
@@ -63,7 +65,10 @@ void OriginEntity::Update()
 {
 	for (auto&& kv : components_)
 	{
-		(kv.second)->Update();
+		if (kv.second->CanUpdate())
+		{
+			(kv.second)->Update();
+		}
 	}
 }
 
@@ -71,7 +76,10 @@ void OriginEntity::PostUpdate()
 {
 	for (auto&& kv : components_)
 	{
-		(kv.second)->PostUpdate();
+		if (kv.second->CanUpdate())
+		{
+			(kv.second)->PostUpdate();
+		}
 	}
 }
 
@@ -81,73 +89,5 @@ void OriginEntity::Exit()
 	{
 		(kv.second)->Exit();
 	}
-}
-
-OriginEntity& OriginEntity::AddComponent(const int idx, std::unique_ptr<OriginComponent> component)
-{
-	Expects(!HasComponent(idx));
-	components_[idx] = std::move(component);
-	return *this;
-}
-
-OriginEntity& OriginEntity::RemoveComponent(const int idx)
-{
-	Expects(HasComponent(idx));
-	ReplaceWith(idx, nullptr);
-	return *this;
-}
-
-OriginEntity& OriginEntity::ReplaceComponent(const int idx, std::unique_ptr<OriginComponent> component)
-{
-	if (HasComponent(idx))
-	{
-		ReplaceWith(idx, std::move(component));
-	}
-	else if (component != nullptr)
-	{
-		AddComponent(idx, std::move(component));
-	}
-
-	return *this;
-}
-
-OriginComponent* OriginEntity::GetComponent(const int idx) const
-{
-	if (!HasComponent(idx))
-	{
-		return nullptr;
-	}
-
-	return (components_.at(idx)).get();
-}
-
-bool OriginEntity::HasComponent(const int idx) const
-{
-	return (components_.find(idx) != components_.end());
-}
-
-
-void OriginEntity::ReplaceWith(const int idx, std::unique_ptr<OriginComponent> replacement)
-{
-	OriginComponent* prev_component = GetComponent(idx);
-	if (prev_component == replacement.get())
-	{
-	}
-	else
-	{
-		if (replacement == nullptr)
-		{
-			components_.erase(idx);
-		}
-		else
-		{
-			components_[idx] = std::move(replacement);
-		}
-	}
-}
-
-void OriginEntity::DestroyAllComponent()
-{
-	components_.clear();
 }
 

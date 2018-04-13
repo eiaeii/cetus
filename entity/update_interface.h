@@ -2,11 +2,11 @@
 
 namespace terra
 {
-	class IModule
+	class IUpdatable
 	{
 	public:
-		IModule() = default;
-		virtual ~IModule() = default;
+		IUpdatable() = default;
+		virtual ~IUpdatable() = default;
 
 		virtual bool Awake() = 0;
 		virtual bool Init() = 0;
@@ -14,6 +14,9 @@ namespace terra
 		virtual void Update() = 0;
 		virtual void PostUpdate() = 0;
 		virtual void Exit() = 0;
+
+		virtual bool CanUpdate() = 0;
+		virtual void SetUpdatable(bool update) = 0;
 	};
 
 }

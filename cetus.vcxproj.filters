@@ -104,19 +104,25 @@
     <ClInclude Include="util\debug_util.h">
       <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="entity\origin_component.h">
-      <Filter>entity</Filter>
-    </ClInclude>
     <ClInclude Include="entity\origin_entity.h">
       <Filter>entity</Filter>
     </ClInclude>
-    <ClInclude Include="entity\origin_util.h">
+    <ClInclude Include="entity\entity.h">
       <Filter>entity</Filter>
     </ClInclude>
-    <ClInclude Include="entity\origin_component_auto_register.h">
+    <ClInclude Include="entity\update_interface.h">
       <Filter>entity</Filter>
     </ClInclude>
-    <ClInclude Include="entity\origin_module_interface.h">
+    <ClInclude Include="entity\component.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="entity\ecs_util.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="entity\singleton_component.h">
+      <Filter>entity</Filter>
+    </ClInclude>
+    <ClInclude Include="entity\singleton_component_auto_register.h">
       <Filter>entity</Filter>
     </ClInclude>
   </ItemGroup>
@@ -151,6 +157,12 @@
     </ClCompile>
     <ClCompile Include="container\dynamic_buffer.cpp" />
     <ClCompile Include="entity\origin_entity.cpp">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="entity\entity.cpp">
+      <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="entity\component.cpp">
       <Filter>entity</Filter>
     </ClCompile>
   </ItemGroup>

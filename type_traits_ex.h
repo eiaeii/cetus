@@ -29,6 +29,17 @@ namespace terra
 	template<typename... Ts> struct make_void { typedef void type; };
 	template<typename... Ts> using void_t = typename make_void<Ts...>::type;
 
+	template<typename T, typename = void> 
+	struct is_smart_pointer : std::false_type {};
+	template<typename T>
+	struct is_smart_pointer<T, void_t<decltype(std::declval<T>().operator ->()), decltype(std::declval<T>().get())>> : std::true_type {};
+
+	template<typename T> struct is_unique_ptr : std::false_type {};
+	template<typename T> struct is_unique_ptr<std::unique_ptr<T> > : std::true_type {};
+
+	template<typename T> struct is_shared_ptr : std::false_type {};
+	template<typename T> struct is_shared_ptr<std::shared_ptr<T> > : std::true_type {};
+
 	template<typename T, typename... Us>
 	struct tuple_match : std::false_type {};
 	template<typename... Ts, typename... Us>
