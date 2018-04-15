@@ -4,7 +4,7 @@
 
 namespace terra
 {
-    class SingletonComponent : IComponent
+    class SingletonComponent : public IComponent
 	{
 	public:
 		SingletonComponent() = default;

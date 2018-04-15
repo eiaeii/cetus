@@ -11,8 +11,8 @@ namespace terra
 		Entity* ent_{ nullptr };
 
 	public:
-		IComponent() = default;
-		virtual ~IComponent() = default;
+		IComponent();
+		virtual ~IComponent();
 
 		void SetOwner(Entity* ent) { ent_ = ent; }
 		Entity* Owner() { return ent_; }

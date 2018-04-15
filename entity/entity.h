@@ -15,32 +15,27 @@ namespace terra
 		Entity();
 		virtual ~Entity();
 
-		template <typename C, typename = std::enable_if<is_unique_ptr<C>::value>::type>
-		auto Add(std::unique_ptr<C> c)->Entity&;
-
 		template <typename C, typename... Args>
 		auto Add(Args&&... args)->Entity&;
 
-		template <typename Arg>
+		template <typename C>
 		auto Remove()->Entity&;
-		template <typename Arg0, typename... Args>
-		auto Remove() -> typename std::enable_if<sizeof...(Args) != 0, Entity&>::type;
+		template <typename C0, typename... Cs>
+		auto Remove() -> typename std::enable_if<sizeof...(Cs) != 0, Entity&>::type;
 
-		template <typename C, typename = std::enable_if<is_unique_ptr<C>::value>::type>
-		auto Replace(std::unique_ptr<C> c)->Entity&;
 
 		template <typename C, typename... Args>
 		auto Replace(Args&&... args)->Entity&;
 
 		template <typename C>
 		auto Get() const->C*;
-		template <typename... Args>
-		auto Get() const -> typename std::enable_if<(sizeof...(Args) != 1), std::tuple<Args*...>>::type;
+		template <typename... Cs>
+		auto Get() const -> typename std::enable_if<(sizeof...(Cs) != 1), std::tuple<Cs*...>>::type;
 
-		template <typename Arg>
+		template <typename C>
 		bool Has() const;
-		template <typename Arg0, typename... Args>
-		auto Has() const -> typename std::enable_if<sizeof...(Args) != 0, bool>::type;
+		template <typename C0, typename... Cs>
+		auto Has() const -> typename std::enable_if<sizeof...(Cs) != 0, bool>::type;
 
 		IComponent* GetComponent(const int idx) const;
 
@@ -54,12 +49,6 @@ namespace terra
 		void DestroyAllComponent();
 	};
 
-	template<typename C, typename>
-	auto Entity::Add(std::unique_ptr<C> c) -> Entity&
-	{
-		return AddComponent(ComponentIdPool::index<C>(), std::move(c));
-	}
-
 	template <typename C, typename... Args>
 	auto Entity::Add(Args&&... args) -> Entity&
 	{
@@ -67,21 +56,15 @@ namespace terra
 			std::make_unique<IComponent>(std::forward<Args>(args)...));
 	}
 
-	template <typename Arg>
+	template <typename C>
 	auto Entity::Remove() -> Entity&
 	{
-		return RemoveComponent(ComponentIdPool::index<Arg>());
+		return RemoveComponent(ComponentIdPool::index<C>());
 	}
-	template <typename Arg0, typename... Args>
-	auto Entity::Remove() -> typename std::enable_if<sizeof...(Args) != 0, Entity&>::type
+	template <typename C0, typename... Cs>
+	auto Entity::Remove() -> typename std::enable_if<sizeof...(Cs) != 0, Entity&>::type
 	{
-		return RemoveComponent(ComponentIdPool::index<Arg0>()), Remove<Args...>();
-	}
-
-	template<typename C, typename>
-	inline auto Entity::Replace(std::unique_ptr<C> c) -> Entity &
-	{
-		return ReplaceComponent(ComponentIdPool::index<C>(), std::move(c));
+		return RemoveComponent(ComponentIdPool::index<C0>()), Remove<Cs...>();
 	}
 
 	template <typename C, typename... Args>
@@ -97,27 +80,27 @@ namespace terra
 		return static_cast<C*>(GetComponent(ComponentIdPool::index<C>()));
 	}
 
-	template <typename... Args>
+	template <typename... Cs>
 	auto Entity::Get() const ->
-		typename std::enable_if<(sizeof...(Args) != 1), std::tuple<Args*...>>::type
+		typename std::enable_if<(sizeof...(Cs) != 1), std::tuple<Cs*...>>::type
 	{
-		using ValueType = std::tuple<Args*...>;
-		if (Has<Args...>()) {
-			return ValueType(Get<Args>()...);
+		using ValueType = std::tuple<Cs*...>;
+		if (Has<Cs...>()) {
+			return ValueType(Get<Cs>()...);
 		}
 		return ValueType();
 	}
 
-	template <typename Arg>
+	template <typename C>
 	bool Entity::Has() const
 	{
-		return HasComponent(ComponentIdPool::index<Arg>());
+		return HasComponent(ComponentIdPool::index<C>());
 	}
 
-	template <typename Arg0, typename... Args>
-	auto Entity::Has() const -> typename std::enable_if<sizeof...(Args) != 0, bool>::type
+	template <typename C0, typename... Cs>
+	auto Entity::Has() const -> typename std::enable_if<sizeof...(Cs) != 0, bool>::type
 	{
-		return HasComponent(ComponentIdPool::index<Arg0>()) && Has<Args...>();
+		return HasComponent(ComponentIdPool::index<C0>()) && Has<Cs...>();
 	}
 
 }
