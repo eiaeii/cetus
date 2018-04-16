@@ -20,7 +20,7 @@ void OriginEntity::Destroy()
 }
 
 
-OriginEntity::OriginEntity(){}
+OriginEntity::OriginEntity() : guid_(FGuid::NewGuid()) {}
 
 OriginEntity::~OriginEntity()
 {

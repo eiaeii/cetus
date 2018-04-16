@@ -1,6 +1,6 @@
 #pragma once
 #include "ecs_util.h"
-#include "update_interface.h"
+#include "updatable_interface.h"
 
 namespace terra
 {

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "core.h"
-#include "update_interface.h"
+#include "updatable_interface.h"
 #include "type_traits_ex.h"
 
 namespace terra
@@ -53,7 +53,7 @@ namespace terra
 	auto Entity::Add(Args&&... args) -> Entity&
 	{
 		return AddComponent(ComponentIdPool::index<C>(),
-			std::make_unique<IComponent>(std::forward<Args>(args)...));
+			std::make_unique<C>(std::forward<Args>(args)...));
 	}
 
 	template <typename C>
@@ -71,7 +71,7 @@ namespace terra
 	auto Entity::Replace(Args&&... args) -> Entity&
 	{
 		return ReplaceComponent(ComponentIdPool::index<C>(),
-			std::make_unique<IComponent>(std::forward<Args>(args)...));
+			std::make_unique<C>(std::forward<Args>(args)...));
 	}
 
 	template <typename C>

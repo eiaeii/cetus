@@ -1,7 +1,7 @@
 #pragma once
 
 #include "core.h"
-#include "update_interface.h"
+#include "updatable_interface.h"
 #include "entity.h"
 
 namespace terra
@@ -10,6 +10,7 @@ namespace terra
     class OriginEntity : public Entity, public IUpdatable
     {
     private:
+		const FGuid guid_;
 		bool updatable_{ true };
         static OriginEntity* default_instance_;
 	public:
@@ -19,6 +20,8 @@ namespace terra
     public:
         OriginEntity();
         virtual ~OriginEntity();
+
+		const FGuid& GetGuid() const { return guid_; }
 
 		virtual bool Awake() override;
 		virtual bool Init() override;

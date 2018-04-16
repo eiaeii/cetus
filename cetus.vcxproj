@@ -136,8 +136,7 @@
     <ClInclude Include="encode\base64.h" />
     <ClInclude Include="entity\component.h" />
     <ClInclude Include="entity\entity.h" />
-    <ClInclude Include="entity\update_interface.h" />
-    <ClInclude Include="entity\singleton_component.h" />
+    <ClInclude Include="entity\updatable_interface.h" />
     <ClInclude Include="entity\origin_entity.h" />
     <ClInclude Include="entity\ecs_util.h" />
     <ClInclude Include="entity\singleton_component_auto_register.h" />

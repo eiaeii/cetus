@@ -16,8 +16,8 @@ Entity::~Entity()
 Entity& Entity::AddComponent(const int idx, std::unique_ptr<IComponent> component)
 {
 	Expects(!HasComponent(idx));
-	components_[idx] = std::move(component);
 	component->SetOwner(this);
+	components_[idx] = std::move(component);
 	return *this;
 }
 
