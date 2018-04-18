@@ -1,6 +1,7 @@
 #pragma once
 
 #include "core.h"
+#include "container/make_heap.h"
 
 namespace terra
 {
@@ -77,6 +78,53 @@ namespace terra
 
 			return temp;
 		}
+
+		//	Heap Util
+		static void HeapPush(T& vec, const ValueType& val)
+		{
+			vec.push_back(val);
+			heap::PushHeap(vec.begin(), vec.end());
+		}
+
+		template<typename Pred>
+		static void HeapPush(T& vec, const ValueType& val, const Pred& pred)
+		{
+			vec.push_back(val);
+			heap::PushHeap(vec.begin(), vec.end(), pred);
+		}
+
+		static void HeapPush(T& vec, ValueType&& val)
+		{
+			vec.push_back(std::move(val));
+			heap::PushHeap(vec.begin(), vec.end());
+		}
+
+		template<typename Pred>
+		static void HeapPush(T& vec, ValueType&& val, const Pred& pred)
+		{
+			vec.push_back(std::move(val));
+			heap::PushHeap(vec.begin(), vec.end(), pred);
+		}
+
+		static void HeapPop(T& vec, ValueType& out_val)
+		{
+			heap::PopHeap(vec.begin(), vec.end());
+			vec.pop_back();
+		}
+
+		template<typename Pred>
+		static void HeapPop(T& vec, ValueType& out_val, const Pred& pred)
+		{
+			heap::PopHeap(vec.begin(), vec.end(), pred);
+			vec.pop_back();
+		}
+
+		static void HeapRemoveAt(T& vec, DiffType pos)
+		{
+			heap::PopHeapHoleByIndex(vec.begin(), pos, vec.end() - vec.begin(), vec.back());
+		}
+
+		static ValueType& HeadTop(T& vec) { return vec.front(); }
 	private:
 		static SizeType PushUniqueImpl(T& vec, const ValueType& val)
 		{

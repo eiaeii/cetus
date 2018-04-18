@@ -129,6 +129,7 @@
     <ClInclude Include="container\dynamic_bitset.h" />
     <ClInclude Include="container\dynamic_buffer.h" />
     <ClInclude Include="container\intrusive_list.h" />
+    <ClInclude Include="container\make_heap.h" />
     <ClInclude Include="container\mpsc_queue.h" />
     <ClInclude Include="container\ringbuffer.h" />
     <ClInclude Include="core.h" />
@@ -148,12 +149,19 @@
     <ClInclude Include="guid\fguid.h" />
     <ClInclude Include="guid\snowflake.h" />
     <ClInclude Include="math\math_ex.h" />
+    <ClInclude Include="reflection\csv.hpp" />
+    <ClInclude Include="reflection\detail\itoa.hpp" />
+    <ClInclude Include="reflection\detail\string_stream.hpp" />
+    <ClInclude Include="reflection\detail\traits.hpp" />
+    <ClInclude Include="reflection\json.hpp" />
+    <ClInclude Include="reflection\reflection.hpp" />
     <ClInclude Include="thread\runnable.h" />
     <ClInclude Include="thread\runnable_thread.h" />
     <ClInclude Include="thread\thread_pool.hpp" />
     <ClInclude Include="thread\thread_safe_queue.hpp" />
     <ClInclude Include="timer\timekeeper.h" />
-    <ClInclude Include="timer\timer.h" />
+    <ClInclude Include="timer\schedule_timer.h" />
+    <ClInclude Include="timer_handler.h" />
     <ClInclude Include="time\data_time.h" />
     <ClInclude Include="time\system_time.h" />
     <ClInclude Include="time\timespan.h" />
@@ -174,7 +182,7 @@
     <ClCompile Include="guid\snowflake.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="thread\runnable_thread.cpp" />
-    <ClCompile Include="timer\timer.cpp" />
+    <ClCompile Include="timer\schedule_timer.cpp" />
     <ClCompile Include="time\data_time.cpp" />
     <ClCompile Include="time\timespan.cpp" />
   </ItemGroup>

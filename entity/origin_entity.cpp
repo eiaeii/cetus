@@ -32,6 +32,7 @@ bool OriginEntity::Awake()
 	{
 		if (!(kv.second)->Awake())
 		{
+			Expects(false);
 			return false;
 		}
 	}
@@ -44,6 +45,7 @@ bool OriginEntity::Init()
 	{
 		if (!(kv.second)->Init())
 		{
+			Expects(false);
 			return false;
 		}
 	}

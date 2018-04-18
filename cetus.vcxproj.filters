@@ -31,6 +31,12 @@
     <Filter Include="entity">
       <UniqueIdentifier>{e885f14e-c91d-4051-a085-740320af74c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="reflection">
+      <UniqueIdentifier>{9bb630d3-ff65-4562-b894-1a583666305d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="reflection\details">
+      <UniqueIdentifier>{78997d33-9cb1-4b54-9c69-a7ff912b16ff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="time\timespan.h">
@@ -65,9 +71,6 @@
       <Filter>container</Filter>
     </ClInclude>
     <ClInclude Include="timer\timekeeper.h">
-      <Filter>timer</Filter>
-    </ClInclude>
-    <ClInclude Include="timer\timer.h">
       <Filter>timer</Filter>
     </ClInclude>
     <ClInclude Include="guid\fguid.h">
@@ -122,6 +125,33 @@
     <ClInclude Include="entity\updatable_interface.h">
       <Filter>entity</Filter>
     </ClInclude>
+    <ClInclude Include="reflection\csv.hpp">
+      <Filter>reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="reflection\json.hpp">
+      <Filter>reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="reflection\reflection.hpp">
+      <Filter>reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="reflection\detail\itoa.hpp">
+      <Filter>reflection\details</Filter>
+    </ClInclude>
+    <ClInclude Include="reflection\detail\string_stream.hpp">
+      <Filter>reflection\details</Filter>
+    </ClInclude>
+    <ClInclude Include="reflection\detail\traits.hpp">
+      <Filter>reflection\details</Filter>
+    </ClInclude>
+    <ClInclude Include="timer\schedule_timer.h">
+      <Filter>timer</Filter>
+    </ClInclude>
+    <ClInclude Include="timer_handler.h">
+      <Filter>timer</Filter>
+    </ClInclude>
+    <ClInclude Include="container\make_heap.h">
+      <Filter>container</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -143,16 +173,12 @@
     <ClCompile Include="container\ringbuffer.cpp">
       <Filter>container</Filter>
     </ClCompile>
-    <ClCompile Include="timer\timer.cpp">
-      <Filter>timer</Filter>
-    </ClCompile>
     <ClCompile Include="guid\fguid.cpp">
       <Filter>guid</Filter>
     </ClCompile>
     <ClCompile Include="guid\snowflake.cpp">
       <Filter>guid</Filter>
     </ClCompile>
-    <ClCompile Include="container\dynamic_buffer.cpp" />
     <ClCompile Include="entity\origin_entity.cpp">
       <Filter>entity</Filter>
     </ClCompile>
@@ -161,6 +187,12 @@
     </ClCompile>
     <ClCompile Include="entity\component.cpp">
       <Filter>entity</Filter>
+    </ClCompile>
+    <ClCompile Include="timer\schedule_timer.cpp">
+      <Filter>timer</Filter>
+    </ClCompile>
+    <ClCompile Include="container\dynamic_buffer.cpp">
+      <Filter>container</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
