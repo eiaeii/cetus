@@ -78,7 +78,4 @@ namespace terra
     template <typename T>
     constexpr bool is_int64_v = std::is_same<T, int64_t>::value || std::is_same<T, uint64_t>::value;
 
-	//for c++17
-	template<typename... Ts> struct make_void { typedef void type; };
-	template<typename... Ts> using void_t = typename make_void<Ts...>::type;
 }

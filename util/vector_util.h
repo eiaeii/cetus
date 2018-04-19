@@ -108,6 +108,7 @@ namespace terra
 
 		static void HeapPop(T& vec, ValueType& out_val)
 		{
+			out_val = vec[0];
 			heap::PopHeap(vec.begin(), vec.end());
 			vec.pop_back();
 		}
@@ -115,6 +116,7 @@ namespace terra
 		template<typename Pred>
 		static void HeapPop(T& vec, ValueType& out_val, const Pred& pred)
 		{
+			out_val = vec[0];
 			heap::PopHeap(vec.begin(), vec.end(), pred);
 			vec.pop_back();
 		}

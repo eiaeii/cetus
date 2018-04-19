@@ -1,7 +1,7 @@
 #pragma once
 
 #include "core.h"
-#include "timer_handler.h"
+#include "timer_handle.h"
 namespace terra
 {
 	enum class ETimerStatus : uint8_t
@@ -52,7 +52,7 @@ namespace terra
 		TimerData currently_executing_timer_;
 
 		/** Set this to GFrameCounter when Timer is ticked. To figure out if Timer has been already ticked or not this frame. */
-		int64_t last_ticked_frame_{ std::numeric_limits<int64_t>::max() };
+		int64_t last_ticked_frame_{ static_cast<int64_t>(-1) };
 
 		/** The last handle we assigned from this timer manager */
 		static int64_t last_assigned_handle_;
@@ -64,6 +64,7 @@ namespace terra
 		void Tick(int tick_ms);
 
 		void SetTimer(TimerHandle& in_out_handle, const TimerCallback& timer_cb, int rate_ms, bool loop, int first_delay_ms);
+		void SetTimer(TimerHandle& in_out_handle, TimerCallback&& timer_cb, int rate_ms, bool loop, int first_delay_ms);
 
 		void SetTimerForNextTick(const TimerCallback& timer_cb);
 
@@ -120,7 +121,7 @@ namespace terra
 			const TimerData* const timer_data = FindTimer(timer_handle);
 			return InternalGetTimerElapsed(timer_data);
 		}
-		bool HasBeenTickedThisFrame() const { return last_ticked_frame_ == GFrameCounter; }
+		bool HasBeenTickedThisFrame() const { return last_ticked_frame_ == GTLFrameCounter; }
 
 		/** Debug command to output info on all timers currently set to the log. */
 		void ListTimers() const;

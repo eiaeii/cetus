@@ -145,6 +145,7 @@
     <ClInclude Include="event_dynamic.h" />
     <ClInclude Include="event_static.h" />
     <ClInclude Include="global_macro.h" />
+    <ClInclude Include="global_variables.h" />
     <ClInclude Include="gsl_assert.h" />
     <ClInclude Include="guid\fguid.h" />
     <ClInclude Include="guid\snowflake.h" />
@@ -161,7 +162,7 @@
     <ClInclude Include="thread\thread_safe_queue.hpp" />
     <ClInclude Include="timer\timekeeper.h" />
     <ClInclude Include="timer\schedule_timer.h" />
-    <ClInclude Include="timer_handler.h" />
+    <ClInclude Include="timer\timer_handle.h" />
     <ClInclude Include="time\data_time.h" />
     <ClInclude Include="time\system_time.h" />
     <ClInclude Include="time\timespan.h" />
@@ -178,6 +179,7 @@
     <ClCompile Include="entity\component.cpp" />
     <ClCompile Include="entity\entity.cpp" />
     <ClCompile Include="entity\origin_entity.cpp" />
+    <ClCompile Include="global_variables.cpp" />
     <ClCompile Include="guid\fguid.cpp" />
     <ClCompile Include="guid\snowflake.cpp" />
     <ClCompile Include="main.cpp" />

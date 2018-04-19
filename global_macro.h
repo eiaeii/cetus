@@ -2,7 +2,7 @@
 
 namespace terra
 {
-    constexpr int INDEX_NONE = -1;
+    static constexpr int INDEX_NONE = -1;
 
 #define MAKE_INSTANCE(classname)    \
     \

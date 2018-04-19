@@ -25,6 +25,8 @@ void ScheduleTimer::ListTimers() const
 	CONSOLE_DEBUG_LOG(LEVEL_DEFAUT, "------- %d Total Timers -------", active_timer_heap_.size() + paused_timer_list_.size() + pending_timer_list_.size());
 }
 
+int64_t ScheduleTimer::last_assigned_handle_ = 0;
+
 //	static function
 void ScheduleTimer::ValidateHandle(TimerHandle & in_out_handle)
 {
@@ -57,6 +59,24 @@ void ScheduleTimer::SetTimer(TimerHandle & in_out_handle, const TimerCallback & 
 		TimerData new_timer;
 		new_timer.timer_handle = in_out_handle;
 		new_timer.timer_cb = timer_cb;
+		InternalSetTimer(new_timer, rate_ms, loop, first_delay_ms);
+	}
+}
+
+void ScheduleTimer::SetTimer(TimerHandle & in_out_handle, TimerCallback&& timer_cb, int rate_ms, bool loop, int first_delay_ms)
+{
+	if (in_out_handle.IsValid())
+	{
+		ClearTimer(in_out_handle);
+	}
+
+	if (rate_ms > 0)
+	{
+		ValidateHandle(in_out_handle);
+
+		TimerData new_timer;
+		new_timer.timer_handle = in_out_handle;
+		new_timer.timer_cb = std::move(timer_cb);
 		InternalSetTimer(new_timer, rate_ms, loop, first_delay_ms);
 	}
 }
@@ -373,7 +393,7 @@ void ScheduleTimer::Tick(int tick_ms)
 	}
 
 	// Timer has been ticked.
-	last_ticked_frame_ = GFrameCounter;
+	last_ticked_frame_ = GTLFrameCounter;
 
 	// If we have any Pending Timers, add them to the Active Queue.
 	for (auto&& e : pending_timer_list_)

@@ -32,9 +32,8 @@
 #include "gsl_assert.h"
 #include "type_traits_ex.h"
 #include "math/math_ex.h"
+#include "global_variables.h"
+
 
 typedef std::make_signed<size_t>::type ssize_t;
 
-static constexpr const int INDEX_NONE = -1;
-
-extern int64_t GFrameCounter;
