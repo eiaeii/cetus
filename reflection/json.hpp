@@ -8,6 +8,7 @@
 
 namespace terra
 {
+	using namespace reflection;
     namespace json
     {
         template <typename InputIt, typename T, typename F>
@@ -163,7 +164,7 @@ namespace terra
             ss.put(']');
         }
 
-        auto write_json_key = [](auto& s, auto i, auto& t) {
+        static auto write_json_key = [](auto& s, auto i, auto& t) {
             s.put('"');
             auto name = get_name<decltype(t), decltype(i)::value>();  // will be replaced by string_view later
             s.write(name);
@@ -259,7 +260,7 @@ namespace terra
             bool neg = false;
         };
 
-        bool g_has_error = false;
+        static bool g_has_error = false;
         class reader_t
         {
         public:

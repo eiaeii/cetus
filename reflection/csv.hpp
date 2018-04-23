@@ -10,49 +10,50 @@
 
 namespace terra
 {
-    namespace Error
-    {
-        struct Head_Parse_Error {
-            const char* err;
-            Head_Parse_Error(const char* msg) { err = msg; }
-        };
-        struct Synax_Error {
-            const char* err;
-            Synax_Error(const char* msg) { err = msg; }
-        };
-    }
-
-    namespace detail
-    {
-        struct string_ref {
-            char const* str;
-            size_t len;
-
-            int length() const { return static_cast<int>(len); }
-
-            bool operator!=(const char* data) const { return strncmp(str, data, strlen(data)); }
-        };
-    }
-    struct column_info {
-        detail::string_ref str_ref;
-    };
-    struct token {
-        detail::string_ref str;
-        enum {
-            t_string,
-            t_comma,
-            t_line_end,
-            t_end,
-        } type;
-        union {
-            int64_t i64;
-            uint64_t u64;
-            double d64;
-        } value;
-        bool neg = false;
-    };
+	using namespace reflection;
     namespace csv
-    {
+	{
+		namespace Error
+		{
+			struct Head_Parse_Error {
+				const char* err;
+				Head_Parse_Error(const char* msg) { err = msg; }
+			};
+			struct Synax_Error {
+				const char* err;
+				Synax_Error(const char* msg) { err = msg; }
+			};
+		}
+
+		namespace detail
+		{
+			struct string_ref {
+				char const* str;
+				size_t len;
+
+				int length() const { return static_cast<int>(len); }
+
+				bool operator!=(const char* data) const { return strncmp(str, data, strlen(data)); }
+			};
+		}
+		struct column_info {
+			detail::string_ref str_ref;
+		};
+		struct token {
+			detail::string_ref str;
+			enum {
+				t_string,
+				t_comma,
+				t_line_end,
+				t_end,
+			} type;
+			union {
+				int64_t i64;
+				uint64_t u64;
+				double d64;
+			} value;
+			bool neg = false;
+		};
         class csvreader_t
         {
         private:

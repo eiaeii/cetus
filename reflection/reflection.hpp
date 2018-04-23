@@ -23,10 +23,12 @@
 
 namespace terra
 {
-    namespace detail
-    {
-        /******************************************/
-        /* arg list expand macro, now support 120 args */
+	namespace reflection
+	{
+		namespace detail
+		{
+			/******************************************/
+			/* arg list expand macro, now support 120 args */
 #define MAKE_ARG_LIST_1(op, arg, ...) op(arg)
 #define MAKE_ARG_LIST_2(op, arg, ...) op(arg), MARCO_EXPAND(MAKE_ARG_LIST_1(op, __VA_ARGS__))
 #define MAKE_ARG_LIST_3(op, arg, ...) op(arg), MARCO_EXPAND(MAKE_ARG_LIST_2(op, __VA_ARGS__))
@@ -295,7 +297,7 @@ namespace terra
 #define FIELD(t) t
 #define MAKE_NAMES(...) #__VA_ARGS__,
 
-        // note use MACRO_CONCAT like A##_##B direct may cause marco expand error
+		// note use MACRO_CONCAT like A##_##B direct may cause marco expand error
 #define MACRO_CONCAT(A, B) MACRO_CONCAT1(A, B)
 #define MACRO_CONCAT1(A, B) A##_##B
 
@@ -324,197 +326,198 @@ namespace terra
     constexpr std::array<const char*, N> arr_##STRUCT_NAME = { \
         MARCO_EXPAND(MACRO_CONCAT(CON_STR, N)(__VA_ARGS__))};  \
     MAKE_META_DATA_IMPL(STRUCT_NAME, MAKE_ARG_LIST(N, &STRUCT_NAME::FIELD, __VA_ARGS__))
-    }
+		}
 
 #define REFLECTION(STRUCT_NAME, ...) MAKE_META_DATA(STRUCT_NAME, GET_ARG_COUNT(__VA_ARGS__), __VA_ARGS__)
 
-    template <typename T>
-    using Reflect_members = decltype(terra_reflect_members(std::declval<T>()));
+		template <typename T>
+		using Reflect_members = decltype(terra_reflect_members(std::declval<T>()));
 
-    template <typename T, typename = void>
-    struct is_reflection : std::false_type {
-    };
+		template <typename T, typename = void>
+		struct is_reflection : std::false_type {
+		};
 
-    template <typename T>
-    struct is_reflection<T, void_t<typename Reflect_members<T>::type>> : std::true_type {
-    };
+		template <typename T>
+		struct is_reflection<T, void_t<typename Reflect_members<T>::type>> : std::true_type {
+		};
 
-    template <typename T>
-    constexpr bool is_reflection_v = is_reflection<T>::value;
+		template <typename T>
+		constexpr bool is_reflection_v = is_reflection<T>::value;
 
-	template <bool B>
-	struct function_traits;
-	template <>
-	struct function_traits<true> {
+		template <bool B>
+		struct function_traits;
+		template <>
+		struct function_traits<true> {
+			template <size_t I, typename T>
+			static constexpr decltype(auto) call(T&& t)
+			{
+				using M = decltype(terra_reflect_members(std::forward<T>(t)));
+				using U = decltype(std::forward<T>(t).*(std::get<I>(M::apply_impl())));
+
+				auto s = std::forward<T>(t).*(std::get<I>(M::apply_impl()));
+				std::array<char, sizeof(U)> arr;
+				memcpy(arr.data(), s, arr.size());
+				return arr;
+			}
+		};
+		template <>
+		struct function_traits<false> {
+			template <size_t I, typename T>
+			static constexpr decltype(auto) call(T&& t)
+			{
+				using M = decltype(terra_reflect_members(std::forward<T>(t)));
+				return std::forward<T>(t).*(std::get<I>(M::apply_impl()));
+			}
+		};
+
 		template <size_t I, typename T>
-		static constexpr decltype(auto) call(T&& t)
+		constexpr decltype(auto) get(T&& t)
 		{
 			using M = decltype(terra_reflect_members(std::forward<T>(t)));
 			using U = decltype(std::forward<T>(t).*(std::get<I>(M::apply_impl())));
 
-			auto s = std::forward<T>(t).*(std::get<I>(M::apply_impl()));
-			std::array<char, sizeof(U)> arr;
-			memcpy(arr.data(), s, arr.size());
-			return arr;
+			return function_traits<std::is_array<U>::value>::template call<I>(t);
+
+			//if constexpr (std::is_array_v<U>) {
+			//	auto s = std::forward<T>(t).*(std::get<I>(M::apply_impl()));
+			//	std::array<char, sizeof(U)> arr;
+			//	memcpy(arr.data(), s, arr.size());
+			//	return arr;
+			//}
+			//else
+			//	return std::forward<T>(t).*(std::get<I>(M::apply_impl()));
 		}
-	};
-	template <>
-	struct function_traits<false> {
-		template <size_t I, typename T>
-		static constexpr decltype(auto) call(T&& t)
+
+		template <typename T, size_t... Is>
+		constexpr auto get_impl(T const& t, std::index_sequence<Is...>)
+		{
+			return std::make_tuple(get<Is>(t)...);
+		}
+
+		template <typename T, size_t... Is>
+		constexpr auto get_impl(T& t, std::index_sequence<Is...>)
+		{
+			return std::make_tuple(std::ref(get<Is>(t))...);
+		}
+
+		template <typename T>
+		constexpr auto get(T const& t)
+		{
+			using M = decltype(terra_reflect_members(t));
+			return get_impl(t, std::make_index_sequence<M::value()>{});
+		}
+
+		template <typename T>
+		constexpr auto get_ref(T& t)
+		{
+			using M = decltype(terra_reflect_members(t));
+			return get_impl(t, std::make_index_sequence<M::value()>{});
+		}
+
+		template <typename T, size_t I>
+		constexpr const char* get_name()
+		{
+			using M = decltype(terra_reflect_members(std::declval<T>()));
+			static_assert(I < M::value(), "out of range");
+			return M::arr()[I];
+		}
+
+		template <typename T>
+		constexpr const char* get_name(size_t i)
+		{
+			using M = decltype(terra_reflect_members(std::declval<T>()));
+			//		static_assert(I<M::value(), "out of range");
+			return M::arr()[i];
+		}
+
+		template <typename T>
+		constexpr const char* get_name()
+		{
+			using M = decltype(terra_reflect_members(std::declval<T>()));
+			return M::name();
+		}
+
+		template <typename T>
+		constexpr std::enable_if_t<is_reflection<T>::value, size_t> get_value()
+		{
+			using M = decltype(terra_reflect_members(std::declval<T>()));
+			return M::value();
+		}
+
+		template <typename T>
+		constexpr std::enable_if_t<!is_reflection<T>::value, size_t> get_value()
+		{
+			return 1;
+		}
+
+		template <typename T>
+		constexpr auto get_array()
+		{
+			using M = decltype(terra_reflect_members(std::declval<T>()));
+			return M::arr();
+		}
+
+		template <typename T>
+		constexpr auto get_index(const char* name)
+		{
+			using M = decltype(terra_reflect_members(std::declval<T>()));
+			constexpr auto arr = M::arr();
+
+			auto it =
+				std::find_if(arr.begin(), arr.end(), [name](const char* str) { return !strncmp(str, name, strlen(str)); });
+
+			return std::distance(arr.begin(), it);
+		}
+
+		template <class Tuple, class F, std::size_t I>
+		void tuple_switch(std::size_t i, Tuple&& t, F&& f, std::index_sequence<I>)
+		{
+			if (i == I) {
+				std::forward<F>(f)(std::get<I>(std::forward<Tuple>(t)));
+			}
+		}
+
+		template <class Tuple, class F, std::size_t IL, std::size_t... IR>
+		auto tuple_switch(std::size_t i, Tuple&& t, F&& f, std::index_sequence<IL, IR...>) ->
+			typename std::enable_if<sizeof...(IR) != 0, void>::type
+		{
+			if (i == IL) {
+				std::forward<F>(f)(std::get<IL>(std::forward<Tuple>(t)));
+			}
+			tuple_switch(i, std::forward<Tuple>(t), std::forward<F>(f), std::index_sequence<IR...>{});
+		}
+
+		//-------------------------------------------------------------------------------------------------------------//
+		//-------------------------------------------------------------------------------------------------------------//
+		template <typename... Args, typename F, std::size_t I>
+		constexpr void for_each(std::tuple<Args...>& t, F&& f, std::index_sequence<I>)
+		{
+			std::forward<F>(f)(std::get<I>(t), std::integral_constant<size_t, I>{});
+		}
+		template <typename... Args, typename F, std::size_t IL, std::size_t... IR>
+		constexpr void for_each(std::tuple<Args...>& t, F&& f, std::index_sequence<IL, IR...>)
+		{
+			std::forward<F>(f)(std::get<IL>(t), std::integral_constant<size_t, IL>{});
+			for_each(t, std::forward<F>(f), std::index_sequence<IR...>{});
+		}
+
+		template <typename... Args, typename F, std::size_t I>
+		constexpr void for_each(const std::tuple<Args...>& t, F&& f, std::index_sequence<I>)
+		{
+			std::forward<F>(f)(std::get<I>(t), std::integral_constant<size_t, I>{});
+		}
+		template <typename... Args, typename F, std::size_t IL, std::size_t... IR>
+		constexpr void for_each(const std::tuple<Args...>& t, F&& f, std::index_sequence<IL, IR...>)
+		{
+			std::forward<F>(f)(std::get<IL>(t), std::integral_constant<size_t, IL>{});
+			for_each(t, std::forward<F>(f), std::index_sequence<IR...>{});
+		}
+
+		template <typename T, typename F>
+		constexpr std::enable_if_t<is_reflection<T>::value> for_each(T&& t, F&& f)
 		{
 			using M = decltype(terra_reflect_members(std::forward<T>(t)));
-			return std::forward<T>(t).*(std::get<I>(M::apply_impl()));
+			for_each(M::apply_impl(), std::forward<F>(f), std::make_index_sequence<M::value()>{});
 		}
-	};
-
-	template <size_t I, typename T>
-	constexpr decltype(auto) get(T&& t)
-	{
-		using M = decltype(terra_reflect_members(std::forward<T>(t)));
-		using U = decltype(std::forward<T>(t).*(std::get<I>(M::apply_impl())));
-
-		return function_traits<std::is_array<U>::value>::template call<I>(t);
-
-		//if constexpr (std::is_array_v<U>) {
-		//	auto s = std::forward<T>(t).*(std::get<I>(M::apply_impl()));
-		//	std::array<char, sizeof(U)> arr;
-		//	memcpy(arr.data(), s, arr.size());
-		//	return arr;
-		//}
-		//else
-		//	return std::forward<T>(t).*(std::get<I>(M::apply_impl()));
 	}
-
-	template <typename T, size_t... Is>
-	constexpr auto get_impl(T const& t, std::index_sequence<Is...>)
-	{
-		return std::make_tuple(get<Is>(t)...);
-	}
-
-	template <typename T, size_t... Is>
-	constexpr auto get_impl(T& t, std::index_sequence<Is...>)
-	{
-		return std::make_tuple(std::ref(get<Is>(t))...);
-	}
-
-	template <typename T>
-	constexpr auto get(T const& t)
-	{
-		using M = decltype(terra_reflect_members(t));
-		return get_impl(t, std::make_index_sequence<M::value()>{});
-	}
-
-	template <typename T>
-	constexpr auto get_ref(T& t)
-	{
-		using M = decltype(terra_reflect_members(t));
-		return get_impl(t, std::make_index_sequence<M::value()>{});
-	}
-
-    template <typename T, size_t I>
-    constexpr const char* get_name()
-    {
-        using M = decltype(terra_reflect_members(std::declval<T>()));
-        static_assert(I < M::value(), "out of range");
-        return M::arr()[I];
-    }
-
-    template <typename T>
-    constexpr const char* get_name(size_t i)
-    {
-        using M = decltype(terra_reflect_members(std::declval<T>()));
-        //		static_assert(I<M::value(), "out of range");
-        return M::arr()[i];
-    }
-
-    template <typename T>
-    constexpr const char* get_name()
-    {
-        using M = decltype(terra_reflect_members(std::declval<T>()));
-        return M::name();
-    }
-
-    template <typename T>
-    constexpr std::enable_if_t<is_reflection<T>::value, size_t> get_value()
-    {
-        using M = decltype(terra_reflect_members(std::declval<T>()));
-        return M::value();
-    }
-
-    template <typename T>
-    constexpr std::enable_if_t<!is_reflection<T>::value, size_t> get_value()
-    {
-        return 1;
-    }
-
-    template <typename T>
-    constexpr auto get_array()
-    {
-        using M = decltype(terra_reflect_members(std::declval<T>()));
-        return M::arr();
-    }
-
-    template <typename T>
-    constexpr auto get_index(const char* name)
-    {
-        using M = decltype(terra_reflect_members(std::declval<T>()));
-        constexpr auto arr = M::arr();
-
-        auto it =
-            std::find_if(arr.begin(), arr.end(), [name](const char* str) { return !strncmp(str, name, strlen(str)); });
-
-        return std::distance(arr.begin(), it);
-    }
-
-    template <class Tuple, class F, std::size_t I>
-    void tuple_switch(std::size_t i, Tuple&& t, F&& f, std::index_sequence<I>)
-    {
-        if (i == I) {
-            std::forward<F>(f)(std::get<I>(std::forward<Tuple>(t)));
-        }
-    }
-
-    template <class Tuple, class F, std::size_t IL, std::size_t... IR>
-    auto tuple_switch(std::size_t i, Tuple&& t, F&& f, std::index_sequence<IL, IR...>) ->
-        typename std::enable_if<sizeof...(IR) != 0, void>::type
-    {
-        if (i == IL) {
-            std::forward<F>(f)(std::get<IL>(std::forward<Tuple>(t)));
-        }
-        tuple_switch(i, std::forward<Tuple>(t), std::forward<F>(f), std::index_sequence<IR...>{});
-    }
-
-    //-------------------------------------------------------------------------------------------------------------//
-    //-------------------------------------------------------------------------------------------------------------//
-    template <typename... Args, typename F, std::size_t I>
-    constexpr void for_each(std::tuple<Args...>& t, F&& f, std::index_sequence<I>)
-    {
-        std::forward<F>(f)(std::get<I>(t), std::integral_constant<size_t, I>{});
-    }
-    template <typename... Args, typename F, std::size_t IL, std::size_t... IR>
-    constexpr void for_each(std::tuple<Args...>& t, F&& f, std::index_sequence<IL, IR...>)
-    {
-        std::forward<F>(f)(std::get<IL>(t), std::integral_constant<size_t, IL>{});
-        for_each(t, std::forward<F>(f), std::index_sequence<IR...>{});
-    }
-
-    template <typename... Args, typename F, std::size_t I>
-    constexpr void for_each(const std::tuple<Args...>& t, F&& f, std::index_sequence<I>)
-    {
-        std::forward<F>(f)(std::get<I>(t), std::integral_constant<size_t, I>{});
-    }
-    template <typename... Args, typename F, std::size_t IL, std::size_t... IR>
-    constexpr void for_each(const std::tuple<Args...>& t, F&& f, std::index_sequence<IL, IR...>)
-    {
-        std::forward<F>(f)(std::get<IL>(t), std::integral_constant<size_t, IL>{});
-        for_each(t, std::forward<F>(f), std::index_sequence<IR...>{});
-    }
-
-    template <typename T, typename F>
-    constexpr std::enable_if_t<is_reflection<T>::value> for_each(T&& t, F&& f)
-    {
-        using M = decltype(terra_reflect_members(std::forward<T>(t)));
-        for_each(M::apply_impl(), std::forward<F>(f), std::make_index_sequence<M::value()>{});
-    }
 }

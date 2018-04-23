@@ -6,7 +6,6 @@
 
 namespace terra
 {
-	class OriginComponent;
     class OriginEntity : public Entity, public IUpdatable
     {
     private:
@@ -15,7 +14,7 @@ namespace terra
         static OriginEntity* default_instance_;
 	public:
 		static OriginEntity* GetInstance();
-		static void Destroy();
+		static void DestroyInstance();
 
     public:
         OriginEntity();
@@ -29,8 +28,11 @@ namespace terra
 		virtual void Update() override;
 		virtual void PostUpdate() override;
 		virtual void Exit() override;
+		virtual void Destroy() override;
 
 		virtual bool CanUpdate() override { return updatable_; }
 		virtual void SetUpdatable(bool update) override { updatable_ = update; }
     };
+
+#define GETCOMPONENT(component_name) OriginEntity::GetInstance()->Get<component_name>()
 }

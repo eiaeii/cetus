@@ -153,6 +153,9 @@
     <ClInclude Include="timer\timer_handle.h">
       <Filter>timer</Filter>
     </ClInclude>
+    <ClInclude Include="util\file_util.h">
+      <Filter>util</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />

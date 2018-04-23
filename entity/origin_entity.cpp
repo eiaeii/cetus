@@ -14,7 +14,7 @@ OriginEntity* OriginEntity::GetInstance()
 	return default_instance_;
 }
 
-void OriginEntity::Destroy()
+void OriginEntity::DestroyInstance()
 {
 	delete default_instance_;
 }
@@ -90,6 +90,14 @@ void OriginEntity::Exit()
 	for (auto&& kv : components_)
 	{
 		(kv.second)->Exit();
+	}
+}
+
+void OriginEntity::Destroy()
+{
+	for (auto&& kv : components_)
+	{
+		(kv.second)->Destroy();
 	}
 }
 

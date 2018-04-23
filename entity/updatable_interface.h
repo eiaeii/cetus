@@ -14,6 +14,7 @@ namespace terra
 		virtual void Update() = 0;
 		virtual void PostUpdate() = 0;
 		virtual void Exit() = 0;
+		virtual void Destroy() = 0;
 
 		virtual bool CanUpdate() = 0;
 		virtual void SetUpdatable(bool update) = 0;
