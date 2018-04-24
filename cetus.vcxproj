@@ -72,10 +72,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>..\debug\lib\$(ProjectName)\</OutDir>
     <IntDir>..\intermediate\lib\$(ProjectName)\</IntDir>
+    <TargetName>$(ProjectName)d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>..\debug\lib\$(ProjectName)\</OutDir>
     <IntDir>..\intermediate\lib\$(ProjectName)\</IntDir>
+    <TargetName>$(ProjectName)d</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -85,7 +87,7 @@
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>.\</AdditionalIncludeDirectories>
       <AdditionalOptions>/D _CRT_SECURE_NO_WARNINGS /utf-8 %(AdditionalOptions)</AdditionalOptions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -96,7 +98,7 @@
       <AdditionalIncludeDirectories>.\</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_MBCS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>/D _CRT_SECURE_NO_WARNINGS /utf-8 %(AdditionalOptions)</AdditionalOptions>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -183,7 +185,6 @@
     <ClCompile Include="global_variables.cpp" />
     <ClCompile Include="guid\fguid.cpp" />
     <ClCompile Include="guid\snowflake.cpp" />
-    <ClCompile Include="main.cpp" />
     <ClCompile Include="thread\runnable_thread.cpp" />
     <ClCompile Include="timer\schedule_timer.cpp" />
     <ClCompile Include="time\data_time.cpp" />

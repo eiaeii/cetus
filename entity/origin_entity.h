@@ -16,10 +16,10 @@ namespace terra
 		static OriginEntity* GetInstance();
 		static void DestroyInstance();
 
+	private:
+		OriginEntity();
+		virtual ~OriginEntity();
     public:
-        OriginEntity();
-        virtual ~OriginEntity();
-
 		const FGuid& GetGuid() const { return guid_; }
 
 		virtual bool Awake() override;

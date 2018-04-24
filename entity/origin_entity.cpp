@@ -16,7 +16,10 @@ OriginEntity* OriginEntity::GetInstance()
 
 void OriginEntity::DestroyInstance()
 {
-	delete default_instance_;
+	if (default_instance_)
+	{
+		delete default_instance_;
+	}
 }
 
 
