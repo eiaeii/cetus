@@ -20,6 +20,7 @@ namespace terra
 
 		void AllocBuffer(uint32_t size);
 
+		bool Empty() { return back_ == front_; }
 		char* Back() { return buffer_ + back_; }
 		const char* GetBuffer() const { return buffer_ + front_; }
 		uint32_t Size() const { return back_ - front_; }
