@@ -15,7 +15,7 @@ namespace terra
 	public:
 		static BufferPtr ReadFile(const std::string& path)
 		{
-			FILE* fp = std::fopen(path.c_str(), "r");
+			FILE* fp = std::fopen(path.c_str(), "rb");
 			Expects(fp);
 			int descriptor = _fileno(fp);
 			struct stat statBuf;
