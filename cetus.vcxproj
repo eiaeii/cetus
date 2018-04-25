@@ -129,7 +129,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="container\dynamic_bitset.h" />
-    <ClInclude Include="container\dynamic_buffer.h" />
+    <ClInclude Include="container\socket_buffer.h" />
     <ClInclude Include="container\intrusive_list.h" />
     <ClInclude Include="container\make_heap.h" />
     <ClInclude Include="container\mpsc_queue.h" />
@@ -176,7 +176,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="container\dynamic_bitset.cpp" />
-    <ClCompile Include="container\dynamic_buffer.cpp" />
+    <ClCompile Include="container\socket_buffer.cpp" />
     <ClCompile Include="container\ringbuffer.cpp" />
     <ClCompile Include="encode\base64.cpp" />
     <ClCompile Include="entity\component.cpp" />

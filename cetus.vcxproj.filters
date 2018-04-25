@@ -92,9 +92,6 @@
     <ClInclude Include="util\vector_util.h">
       <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="container\dynamic_buffer.h">
-      <Filter>container</Filter>
-    </ClInclude>
     <ClInclude Include="math\math_ex.h">
       <Filter>math</Filter>
     </ClInclude>
@@ -156,6 +153,9 @@
     <ClInclude Include="util\file_util.h">
       <Filter>util</Filter>
     </ClInclude>
+    <ClInclude Include="container\socket_buffer.h">
+      <Filter>container</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="time\timespan.cpp">
@@ -194,9 +194,9 @@
     <ClCompile Include="timer\schedule_timer.cpp">
       <Filter>timer</Filter>
     </ClCompile>
-    <ClCompile Include="container\dynamic_buffer.cpp">
+    <ClCompile Include="global_variables.cpp" />
+    <ClCompile Include="container\socket_buffer.cpp">
       <Filter>container</Filter>
     </ClCompile>
-    <ClCompile Include="global_variables.cpp" />
   </ItemGroup>
 </Project>
