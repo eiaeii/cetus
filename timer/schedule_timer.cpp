@@ -4,25 +4,25 @@ using namespace terra;
 
 void ScheduleTimer::ListTimers() const
 {
-	CONSOLE_DEBUG_LOG(LEVEL_DEFAUT, "------- %d Active Timers -------", active_timer_heap_.size());
+	CONSOLE_DEBUG_LOG(LEVEL_DEFAUT, "------- %lu Active Timers -------", active_timer_heap_.size());
 	for (const auto& e : active_timer_heap_)
 	{
 		CONSOLE_DEBUG_LOG(LEVEL_DEFAUT, "%s", e.timer_cb.target_type().name());
 	}
 
-	CONSOLE_DEBUG_LOG(LEVEL_DEFAUT, "------- %d Paused Timers -------", paused_timer_list_.size());
+	CONSOLE_DEBUG_LOG(LEVEL_DEFAUT, "------- %lu Paused Timers -------", paused_timer_list_.size());
 	for (const auto& e : paused_timer_list_)
 	{
 		CONSOLE_DEBUG_LOG(LEVEL_DEFAUT, "%s", e.timer_cb.target_type().name());
 	}
 	
-	CONSOLE_DEBUG_LOG(LEVEL_DEFAUT, "------- %d Pending Timers -------", pending_timer_list_.size());
+	CONSOLE_DEBUG_LOG(LEVEL_DEFAUT, "------- %lu Pending Timers -------", pending_timer_list_.size());
 	for (const auto& e : pending_timer_list_)
 	{
 		CONSOLE_DEBUG_LOG(LEVEL_DEFAUT, "%s", e.timer_cb.target_type().name());
 	}
 
-	CONSOLE_DEBUG_LOG(LEVEL_DEFAUT, "------- %d Total Timers -------", active_timer_heap_.size() + paused_timer_list_.size() + pending_timer_list_.size());
+	CONSOLE_DEBUG_LOG(LEVEL_DEFAUT, "------- %lu Total Timers -------", active_timer_heap_.size() + paused_timer_list_.size() + pending_timer_list_.size());
 }
 
 int64_t ScheduleTimer::last_assigned_handle_ = 0;
@@ -45,7 +45,7 @@ ScheduleTimer::~ScheduleTimer()
 {
 }
 
-void ScheduleTimer::SetTimer(TimerHandle & in_out_handle, const TimerCallback & timer_cb, int rate_ms, bool loop, int first_delay_ms)
+void ScheduleTimer::SetTimer(TimerHandle & in_out_handle, const TimerCallback & timer_cb, int rate_ms, bool loop, int first_delay_ms/* = -1*/)
 {
 	if (in_out_handle.IsValid())
 	{
@@ -63,7 +63,7 @@ void ScheduleTimer::SetTimer(TimerHandle & in_out_handle, const TimerCallback & 
 	}
 }
 
-void ScheduleTimer::SetTimer(TimerHandle & in_out_handle, TimerCallback&& timer_cb, int rate_ms, bool loop, int first_delay_ms)
+void ScheduleTimer::SetTimer(TimerHandle & in_out_handle, TimerCallback&& timer_cb, int rate_ms, bool loop, int first_delay_ms/* = -1*/)
 {
 	if (in_out_handle.IsValid())
 	{
@@ -403,4 +403,12 @@ void ScheduleTimer::Tick(int tick_ms)
 		VectorUtil<decltype(active_timer_heap_)>::HeapPush(active_timer_heap_, e);
 	}
 	pending_timer_list_.clear();
+}
+
+void ScheduleTimer::ClearAllTimers()
+{
+	active_timer_heap_.clear();
+	paused_timer_list_.clear();
+	pending_timer_list_.clear();
+	currently_executing_timer_.Clear();
 }

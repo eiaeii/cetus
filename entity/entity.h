@@ -3,6 +3,7 @@
 #include "core.h"
 #include "updatable_interface.h"
 #include "type_traits_ex.h"
+#include "ecs_util.h"
 
 namespace terra
 {
@@ -39,6 +40,7 @@ namespace terra
 
 		IComponent* GetComponent(const int idx) const;
 
+		void DestroyAllComponent();
 	private:
 		Entity& AddComponent(const int idx, std::unique_ptr<IComponent> component);
 		Entity& RemoveComponent(const int idx);
@@ -46,7 +48,6 @@ namespace terra
 		bool HasComponent(const int idx) const;
 		void ReplaceWith(const int idx, std::unique_ptr<IComponent> component);
 
-		void DestroyAllComponent();
 	};
 
 	template <typename C, typename... Args>

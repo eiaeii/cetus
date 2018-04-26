@@ -13,9 +13,9 @@ ring_buffer::~ring_buffer() { delete[] buffer_; }
 void ring_buffer::write(const char* data, int len)
 {
 	Expects(writable_size() >= len);
-	len = std::min(len, size_ - in_ + out_);
+	len = std::min<int>(len, size_ - in_ + out_);
 
-	auto l = std::min(len, size_ - (in_ & (size_ - 1)));
+	auto l = std::min<int>(len, size_ - (in_ & (size_ - 1)));
 	memcpy(buffer_ + (in_ & (size_ - 1)), data, l);
 	memcpy(buffer_, data + l, len - l);
 
@@ -24,9 +24,9 @@ void ring_buffer::write(const char* data, int len)
 void ring_buffer::read(char* data, int len)
 {
 	Expects(readable_size() >= len);
-	len = std::min(len, in_ - out_);
+	len = std::min<int>(len, in_ - out_);
 
-	auto l = std::min(len, size_ - (out_ & (size_ - 1)));
+	auto l = std::min<int>(len, size_ - (out_ & (size_ - 1)));
 	memcpy(data, buffer_ + (out_ & (size_ - 1)), l);
 	memcpy(data + l, buffer_, len - l);
 
@@ -35,9 +35,9 @@ void ring_buffer::read(char* data, int len)
 void ring_buffer::peek(char* data, int len)
 {
 	Expects(readable_size() >= len);
-	len = std::min(len, in_ - out_);
+	len = std::min<int>(len, in_ - out_);
 
-	auto l = std::min(len, size_ - (out_ & (size_ - 1)));
+	auto l = std::min<int>(len, size_ - (out_ & (size_ - 1)));
 	memcpy(data, buffer_ + (out_ & (size_ - 1)), l);
 	memcpy(data + l, buffer_, len - l);
 }

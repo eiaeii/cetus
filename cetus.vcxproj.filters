@@ -37,6 +37,9 @@
     <Filter Include="reflection\details">
       <UniqueIdentifier>{78997d33-9cb1-4b54-9c69-a7ff912b16ff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="logger">
+      <UniqueIdentifier>{b593b7ad-cb3e-4941-8290-4291f726a24c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="time\timespan.h">

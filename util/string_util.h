@@ -1,7 +1,7 @@
 #pragma once
 
 #include "core.h"
-
+#include <cstdio>
 namespace terra
 {
 	class StringUtils
@@ -66,13 +66,21 @@ namespace terra
 			return count;
 		}
 
-		static bool IsEqual(const std::string& lhs, const std::string& rhs)
+		static bool IsEqual(const std::string& lhs, const std::string& rhs, bool ignore_case = false)
 		{
-			return strcmp(lhs.c_str(), rhs.c_str()) == 0;
+#ifdef _WIN32
+			return ignore_case ? (_stricmp(lhs.c_str(), rhs.c_str()) == 0) : (strcmp(lhs.c_str(), rhs.c_str()) == 0);
+#else
+			return ignore_case ? (strcasecmp(lhs.c_str(), rhs.c_str()) == 0) : (strcmp(lhs.c_str(), rhs.c_str()) == 0);
+#endif
 		}
-		static bool IsEqual(const char* lhs, const char* rhs)
+		static bool IsEqual(const char* lhs, const char* rhs, bool ignore_case = false)
 		{
-			return strcmp(lhs, rhs) == 0;
+#ifdef _WIN32
+			return ignore_case ? (_stricmp(lhs, rhs) == 0) : (strcmp(lhs, rhs) == 0);
+#else
+			return ignore_case ? (strcasecmp(lhs, rhs) == 0) : (strcmp(lhs, rhs) == 0);
+#endif
 		}
 		static bool StartsWith(const std::string& str, const char* prefix)
 		{

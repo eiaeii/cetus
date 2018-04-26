@@ -63,8 +63,10 @@ namespace terra
 
 		void Tick(int tick_ms);
 
-		void SetTimer(TimerHandle& in_out_handle, const TimerCallback& timer_cb, int rate_ms, bool loop, int first_delay_ms);
-		void SetTimer(TimerHandle& in_out_handle, TimerCallback&& timer_cb, int rate_ms, bool loop, int first_delay_ms);
+		void ClearAllTimers();
+
+		void SetTimer(TimerHandle& in_out_handle, const TimerCallback& timer_cb, int rate_ms, bool loop, int first_delay_ms = -1);
+		void SetTimer(TimerHandle& in_out_handle, TimerCallback&& timer_cb, int rate_ms, bool loop, int first_delay_ms = -1);
 
 		void SetTimerForNextTick(const TimerCallback& timer_cb);
 
