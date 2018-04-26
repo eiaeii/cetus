@@ -21,8 +21,6 @@ constexpr int SOCKET_ERROR = -1;
 constexpr int INVALID_SOCKET = -1;
 #endif
 
-
-
 #include <iostream>
 #include <cassert>
 #include <cstdint>

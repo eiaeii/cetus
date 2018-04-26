@@ -159,6 +159,9 @@
     <ClInclude Include="container\socket_buffer.h">
       <Filter>container</Filter>
     </ClInclude>
+    <ClInclude Include="timer\frame_timer.h">
+      <Filter>timer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="time\timespan.cpp">
@@ -200,6 +203,9 @@
     <ClCompile Include="global_variables.cpp" />
     <ClCompile Include="container\socket_buffer.cpp">
       <Filter>container</Filter>
+    </ClCompile>
+    <ClCompile Include="timer\frame_timer.cpp">
+      <Filter>timer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

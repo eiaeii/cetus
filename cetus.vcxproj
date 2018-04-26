@@ -165,6 +165,7 @@
     <ClInclude Include="timer\timekeeper.h" />
     <ClInclude Include="timer\schedule_timer.h" />
     <ClInclude Include="timer\timer_handle.h" />
+    <ClInclude Include="timer\frame_timer.h" />
     <ClInclude Include="time\data_time.h" />
     <ClInclude Include="time\system_time.h" />
     <ClInclude Include="time\timespan.h" />
@@ -187,6 +188,7 @@
     <ClCompile Include="guid\snowflake.cpp" />
     <ClCompile Include="thread\runnable_thread.cpp" />
     <ClCompile Include="timer\schedule_timer.cpp" />
+    <ClCompile Include="timer\frame_timer.cpp" />
     <ClCompile Include="time\data_time.cpp" />
     <ClCompile Include="time\timespan.cpp" />
   </ItemGroup>
