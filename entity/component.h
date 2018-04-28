@@ -19,9 +19,9 @@ namespace terra
 
 		virtual bool Awake() override { return true; }
 		virtual bool Init() override { return true; }
-		virtual void PreUpdate() override {}
-		virtual void Update() override {}
-		virtual void PostUpdate() override {}
+		virtual void PreUpdate(float delta_time) {}
+		virtual void Update(float delta_time) {}
+		virtual void PostUpdate(float delta_time) {}
 		virtual void Exit() override {}
 		virtual void Destroy() override {}
 

@@ -107,9 +107,6 @@
     <ClInclude Include="util\debug_util.h">
       <Filter>util</Filter>
     </ClInclude>
-    <ClInclude Include="entity\origin_entity.h">
-      <Filter>entity</Filter>
-    </ClInclude>
     <ClInclude Include="entity\entity.h">
       <Filter>entity</Filter>
     </ClInclude>
@@ -117,9 +114,6 @@
       <Filter>entity</Filter>
     </ClInclude>
     <ClInclude Include="entity\ecs_util.h">
-      <Filter>entity</Filter>
-    </ClInclude>
-    <ClInclude Include="entity\singleton_component_auto_register.h">
       <Filter>entity</Filter>
     </ClInclude>
     <ClInclude Include="entity\updatable_interface.h">
@@ -187,9 +181,6 @@
     </ClCompile>
     <ClCompile Include="guid\snowflake.cpp">
       <Filter>guid</Filter>
-    </ClCompile>
-    <ClCompile Include="entity\origin_entity.cpp">
-      <Filter>entity</Filter>
     </ClCompile>
     <ClCompile Include="entity\entity.cpp">
       <Filter>entity</Filter>

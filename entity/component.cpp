@@ -1,4 +1,4 @@
-#include "component.h"
+#include "entity/component.h"
 #include "entity.h"
 
 using namespace terra;

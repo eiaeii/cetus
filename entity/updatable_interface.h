@@ -10,9 +10,9 @@ namespace terra
 
 		virtual bool Awake() = 0;
 		virtual bool Init() = 0;
-		virtual void PreUpdate() = 0;
-		virtual void Update() = 0;
-		virtual void PostUpdate() = 0;
+		virtual void PreUpdate(float delta_time) = 0;
+		virtual void Update(float delta_time) = 0;
+		virtual void PostUpdate(float delta_time) = 0;
 		virtual void Exit() = 0;
 		virtual void Destroy() = 0;
 

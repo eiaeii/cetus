@@ -140,9 +140,7 @@
     <ClInclude Include="entity\component.h" />
     <ClInclude Include="entity\entity.h" />
     <ClInclude Include="entity\updatable_interface.h" />
-    <ClInclude Include="entity\origin_entity.h" />
     <ClInclude Include="entity\ecs_util.h" />
-    <ClInclude Include="entity\singleton_component_auto_register.h" />
     <ClInclude Include="enum_as_byte.h" />
     <ClInclude Include="event_dynamic.h" />
     <ClInclude Include="event_static.h" />
@@ -182,7 +180,6 @@
     <ClCompile Include="encode\base64.cpp" />
     <ClCompile Include="entity\component.cpp" />
     <ClCompile Include="entity\entity.cpp" />
-    <ClCompile Include="entity\origin_entity.cpp" />
     <ClCompile Include="global_variables.cpp" />
     <ClCompile Include="guid\fguid.cpp" />
     <ClCompile Include="guid\snowflake.cpp" />
