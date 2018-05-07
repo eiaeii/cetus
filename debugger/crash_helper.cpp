@@ -16,22 +16,22 @@ namespace terra
 			PMINIDUMP_CALLBACK_INFORMATION
 			);
 		// 从 "DbgHelp.dll" 库中获取 "MiniDumpWriteDump" 函数  
-		MiniDumpWriteDumpT pfnMiniDumpWriteDump = NULL;
+		MiniDumpWriteDumpT pfnMiniDumpWriteDump = nullptr;
 		HMODULE hDbgHelp = LoadLibrary(_T("DbgHelp.dll"));
-		if (NULL == hDbgHelp)
+		if (nullptr == hDbgHelp)
 		{
 			return EXCEPTION_CONTINUE_EXECUTION;
 		}
 		pfnMiniDumpWriteDump = (MiniDumpWriteDumpT)GetProcAddress(hDbgHelp, "MiniDumpWriteDump");
 
-		if (NULL == pfnMiniDumpWriteDump)
+		if (nullptr == pfnMiniDumpWriteDump)
 		{
 			FreeLibrary(hDbgHelp);
 			return EXCEPTION_CONTINUE_EXECUTION;
 		}
 		// 创建 dmp 文件件  
 		TCHAR szFileName[MAX_PATH] = { 0 };
-		TCHAR* szVersion = _T("DumpDemo_v1.0");
+		TCHAR* szVersion = _T("TerraDump1.0");
 		SYSTEMTIME stLocalTime;
 		GetLocalTime(&stLocalTime);
 		wsprintf(szFileName, "%s-%04d%02d%02d-%02d%02d%02d.dmp",
@@ -49,8 +49,17 @@ namespace terra
 		expParam.ThreadId = GetCurrentThreadId();
 		expParam.ExceptionPointers = pExceptionPointers;
 		expParam.ClientPointers = FALSE;
+		//mini dump
+		//pfnMiniDumpWriteDump(GetCurrentProcess(), GetCurrentProcessId(),
+			//hDumpFile, MiniDumpWithDataSegs, (pExceptionPointers ? &expParam : nullptr), nullptr, nullptr);
+		//full dump
+		DWORD Flags = MiniDumpWithFullMemory |
+			MiniDumpWithFullMemoryInfo |
+			MiniDumpWithHandleData |
+			MiniDumpWithUnloadedModules |
+			MiniDumpWithThreadInfo;
 		pfnMiniDumpWriteDump(GetCurrentProcess(), GetCurrentProcessId(),
-			hDumpFile, MiniDumpWithDataSegs, (pExceptionPointers ? &expParam : NULL), NULL, NULL);
+			hDumpFile, (MINIDUMP_TYPE)Flags, (pExceptionPointers ? &expParam : nullptr), nullptr, nullptr);
 		// 释放文件  
 		CloseHandle(hDumpFile);
 		FreeLibrary(hDbgHelp);
