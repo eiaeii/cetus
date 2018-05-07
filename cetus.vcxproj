@@ -135,6 +135,7 @@
     <ClInclude Include="container\mpsc_queue.h" />
     <ClInclude Include="container\ringbuffer.h" />
     <ClInclude Include="core.h" />
+    <ClInclude Include="debugger\crash_helper.h" />
     <ClInclude Include="delegate.h" />
     <ClInclude Include="encode\base64.h" />
     <ClInclude Include="entity\component.h" />
@@ -177,6 +178,7 @@
     <ClCompile Include="container\dynamic_bitset.cpp" />
     <ClCompile Include="container\socket_buffer.cpp" />
     <ClCompile Include="container\ringbuffer.cpp" />
+    <ClCompile Include="debugger\crash_helper.cpp" />
     <ClCompile Include="encode\base64.cpp" />
     <ClCompile Include="entity\component.cpp" />
     <ClCompile Include="entity\entity.cpp" />

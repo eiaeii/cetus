@@ -55,5 +55,7 @@ constexpr int INVALID_SOCKET = -1;
 #include "math/math_ex.h"
 #include "global_variables.h"
 
+#include "debugger/crash_helper.h"
+
 typedef std::make_signed<size_t>::type ssize_t;
 

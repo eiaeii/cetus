@@ -40,6 +40,9 @@
     <Filter Include="logger">
       <UniqueIdentifier>{b593b7ad-cb3e-4941-8290-4291f726a24c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="debugger">
+      <UniqueIdentifier>{325842c4-3986-4d1a-bb3a-43e137d28b82}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="time\timespan.h">
@@ -156,6 +159,9 @@
     <ClInclude Include="timer\frame_timer.h">
       <Filter>timer</Filter>
     </ClInclude>
+    <ClInclude Include="debugger\crash_helper.h">
+      <Filter>debugger</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="time\timespan.cpp">
@@ -197,6 +203,9 @@
     </ClCompile>
     <ClCompile Include="timer\frame_timer.cpp">
       <Filter>timer</Filter>
+    </ClCompile>
+    <ClCompile Include="debugger\crash_helper.cpp">
+      <Filter>debugger</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
