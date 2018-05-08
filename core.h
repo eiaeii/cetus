@@ -57,5 +57,8 @@ constexpr int INVALID_SOCKET = -1;
 
 #include "debugger/crash_helper.h"
 
+#include "g3log/g3log.hpp"
+#include "g3log/logworker.hpp"
+
 typedef std::make_signed<size_t>::type ssize_t;
 

@@ -15,7 +15,7 @@ namespace terra
         ~TimeKeeper()
         {
             auto t = duration_cast<milliseconds>(high_resolution_clock::now() - start_);
-            std::cout << t.count() << "ms" << std::endl;
+            //LOG(INFO) << t.count() << "ms";
         }
     };
 

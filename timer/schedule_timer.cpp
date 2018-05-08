@@ -4,25 +4,25 @@ using namespace terra;
 
 void ScheduleTimer::ListTimers() const
 {
-	CONSOLE_DEBUG_LOG(LEVEL_DEFAUT, "------- %lu Active Timers -------", active_timer_heap_.size());
+	LOGF(INFO, "------- %lu Active Timers -------", active_timer_heap_.size());
 	for (const auto& e : active_timer_heap_)
 	{
-		CONSOLE_DEBUG_LOG(LEVEL_DEFAUT, "%s", e.timer_cb.target_type().name());
+		LOGF(INFO, "%s", e.timer_cb.target_type().name());
 	}
 
-	CONSOLE_DEBUG_LOG(LEVEL_DEFAUT, "------- %lu Paused Timers -------", paused_timer_list_.size());
+	LOGF(INFO, "------- %lu Paused Timers -------", paused_timer_list_.size());
 	for (const auto& e : paused_timer_list_)
 	{
-		CONSOLE_DEBUG_LOG(LEVEL_DEFAUT, "%s", e.timer_cb.target_type().name());
+		LOGF(INFO, "%s", e.timer_cb.target_type().name());
 	}
 	
-	CONSOLE_DEBUG_LOG(LEVEL_DEFAUT, "------- %lu Pending Timers -------", pending_timer_list_.size());
+	LOGF(INFO, "------- %lu Pending Timers -------", pending_timer_list_.size());
 	for (const auto& e : pending_timer_list_)
 	{
-		CONSOLE_DEBUG_LOG(LEVEL_DEFAUT, "%s", e.timer_cb.target_type().name());
+		LOGF(INFO, "%s", e.timer_cb.target_type().name());
 	}
 
-	CONSOLE_DEBUG_LOG(LEVEL_DEFAUT, "------- %lu Total Timers -------", active_timer_heap_.size() + paused_timer_list_.size() + pending_timer_list_.size());
+	LOGF(INFO, "------- %lu Total Timers -------", active_timer_heap_.size() + paused_timer_list_.size() + pending_timer_list_.size());
 }
 
 int64_t ScheduleTimer::last_assigned_handle_ = 0;
