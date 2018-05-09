@@ -162,6 +162,12 @@
     <ClInclude Include="debugger\crash_helper.h">
       <Filter>debugger</Filter>
     </ClInclude>
+    <ClInclude Include="util\console_util.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="logger\g3log_fwd.h">
+      <Filter>logger</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="time\timespan.cpp">
@@ -206,6 +212,9 @@
     </ClCompile>
     <ClCompile Include="debugger\crash_helper.cpp">
       <Filter>debugger</Filter>
+    </ClCompile>
+    <ClCompile Include="util\console_util.cpp">
+      <Filter>util</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

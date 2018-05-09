@@ -150,6 +150,7 @@
     <ClInclude Include="gsl_assert.h" />
     <ClInclude Include="guid\fguid.h" />
     <ClInclude Include="guid\snowflake.h" />
+    <ClInclude Include="logger\g3log_fwd.h" />
     <ClInclude Include="math\math_ex.h" />
     <ClInclude Include="reflection\csv.hpp" />
     <ClInclude Include="reflection\detail\itoa.hpp" />
@@ -169,6 +170,7 @@
     <ClInclude Include="time\system_time.h" />
     <ClInclude Include="time\timespan.h" />
     <ClInclude Include="type_traits_ex.h" />
+    <ClInclude Include="util\console_util.h" />
     <ClInclude Include="util\debug_util.h" />
     <ClInclude Include="util\file_util.h" />
     <ClInclude Include="util\string_util.h" />
@@ -190,6 +192,7 @@
     <ClCompile Include="timer\frame_timer.cpp" />
     <ClCompile Include="time\data_time.cpp" />
     <ClCompile Include="time\timespan.cpp" />
+    <ClCompile Include="util\console_util.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

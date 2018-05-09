@@ -91,7 +91,7 @@ void ScheduleTimer::SetTimerForNextTick(const TimerCallback & timer_cb)
 	new_timer.expire_time = internal_time_;
 	new_timer.status = ETimerStatus::ACTIVE;
 
-	VectorUtil<decltype(active_timer_heap_)>::HeapPush(active_timer_heap_, new_timer);
+	VectorUtils<decltype(active_timer_heap_)>::HeapPush(active_timer_heap_, new_timer);
 }
 
 void ScheduleTimer::InternalSetTimer(TimerData & new_timer, int rate_ms, bool loop, int first_delay_ms)
@@ -107,7 +107,7 @@ void ScheduleTimer::InternalSetTimer(TimerData & new_timer, int rate_ms, bool lo
 		{
 			new_timer.expire_time = internal_time_ + first_delay_ms;
 			new_timer.status = ETimerStatus::ACTIVE;
-			VectorUtil<decltype(active_timer_heap_)>::HeapPush(active_timer_heap_, new_timer);
+			VectorUtils<decltype(active_timer_heap_)>::HeapPush(active_timer_heap_, new_timer);
 		}
 		else
 		{
@@ -201,15 +201,15 @@ void ScheduleTimer::InternalClearTimer(int timer_idx, ETimerStatus timer_status)
 	switch (timer_status)
 	{
 	case ETimerStatus::PENDING:
-		VectorUtil<decltype(pending_timer_list_)>::RemoveAtSwap(pending_timer_list_, timer_idx);
+		VectorUtils<decltype(pending_timer_list_)>::RemoveAtSwap(pending_timer_list_, timer_idx);
 		break;
 
 	case ETimerStatus::ACTIVE:
-		VectorUtil<decltype(active_timer_heap_)>::HeapRemoveAt(active_timer_heap_, timer_idx);
+		VectorUtils<decltype(active_timer_heap_)>::HeapRemoveAt(active_timer_heap_, timer_idx);
 		break;
 
 	case ETimerStatus::PAUSED:
-		VectorUtil<decltype(pending_timer_list_)>::RemoveAtSwap(pending_timer_list_, timer_idx);
+		VectorUtils<decltype(pending_timer_list_)>::RemoveAtSwap(pending_timer_list_, timer_idx);
 		break;
 
 	case ETimerStatus::EXECUTING:
@@ -289,11 +289,11 @@ void ScheduleTimer::InternalPauseTimer(TimerData const* timer_to_pause, int time
 		switch (previous_status)
 		{
 		case ETimerStatus::ACTIVE:
-			VectorUtil<decltype(active_timer_heap_)>::HeapRemoveAt(active_timer_heap_, timer_idx);
+			VectorUtils<decltype(active_timer_heap_)>::HeapRemoveAt(active_timer_heap_, timer_idx);
 			break;
 
 		case ETimerStatus::PENDING:
-			VectorUtil<decltype(pending_timer_list_)>::RemoveAtSwap(pending_timer_list_, timer_idx);
+			VectorUtils<decltype(pending_timer_list_)>::RemoveAtSwap(pending_timer_list_, timer_idx);
 			break;
 
 		case ETimerStatus::EXECUTING:
@@ -317,7 +317,7 @@ void ScheduleTimer::InternalContinueTimer(int paused_timer_idx)
 		{
 			timer_to_continue.expire_time += internal_time_;
 			timer_to_continue.status = ETimerStatus::ACTIVE;
-			VectorUtil<decltype(active_timer_heap_)>::HeapPush(active_timer_heap_, timer_to_continue);
+			VectorUtils<decltype(active_timer_heap_)>::HeapPush(active_timer_heap_, timer_to_continue);
 		}
 		else
 		{
@@ -325,7 +325,7 @@ void ScheduleTimer::InternalContinueTimer(int paused_timer_idx)
 			pending_timer_list_.push_back(timer_to_continue);
 		}
 
-		VectorUtil<decltype(pending_timer_list_)>::RemoveAtSwap(pending_timer_list_, paused_timer_idx);
+		VectorUtils<decltype(pending_timer_list_)>::RemoveAtSwap(pending_timer_list_, paused_timer_idx);
 	}
 }
 
@@ -341,13 +341,13 @@ void ScheduleTimer::Tick(int tick_ms)
 
 	while (active_timer_heap_.size() > 0)
 	{
-		TimerData& top = VectorUtil<decltype(active_timer_heap_)>::HeadTop(active_timer_heap_);
+		TimerData& top = VectorUtils<decltype(active_timer_heap_)>::HeadTop(active_timer_heap_);
 		if (internal_time_ > top.expire_time)
 		{
 			// Timer has expired! Fire the delegate, then handle potential looping.
 
 			// Remove it from the heap and store it while we're EXECUTING
-			VectorUtil<decltype(active_timer_heap_)>::HeapPop(active_timer_heap_, currently_executing_timer_);
+			VectorUtils<decltype(active_timer_heap_)>::HeapPop(active_timer_heap_, currently_executing_timer_);
 			currently_executing_timer_.status = ETimerStatus::EXECUTING;
 
 			// Determine how many times the timer may have elapsed (e.g. for large DeltaTime on a short looping timer)
@@ -379,7 +379,7 @@ void ScheduleTimer::Tick(int tick_ms)
 					// Put this timer back on the heap
 					currently_executing_timer_.expire_time += call_count * currently_executing_timer_.rate_ms;
 					currently_executing_timer_.status = ETimerStatus::ACTIVE;
-					VectorUtil<decltype(active_timer_heap_)>::HeapPush(active_timer_heap_, currently_executing_timer_);
+					VectorUtils<decltype(active_timer_heap_)>::HeapPush(active_timer_heap_, currently_executing_timer_);
 				}
 			}
 
@@ -400,7 +400,7 @@ void ScheduleTimer::Tick(int tick_ms)
 	{
 		e.expire_time += internal_time_;
 		e.status = ETimerStatus::ACTIVE;
-		VectorUtil<decltype(active_timer_heap_)>::HeapPush(active_timer_heap_, e);
+		VectorUtils<decltype(active_timer_heap_)>::HeapPush(active_timer_heap_, e);
 	}
 	pending_timer_list_.clear();
 }

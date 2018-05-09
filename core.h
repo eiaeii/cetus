@@ -3,6 +3,7 @@
 #ifdef _WIN32
 #define NOMINMAX
 #define WIN32_LEAN_AND_MEAN
+#include <Windows.h>
 #include <WinSock2.h>
 #include <WS2tcpip.h>
 typedef int socklen_t;
@@ -57,8 +58,7 @@ constexpr int INVALID_SOCKET = -1;
 
 #include "debugger/crash_helper.h"
 
-#include "g3log/g3log.hpp"
-#include "g3log/logworker.hpp"
+#include "logger/g3log_fwd.h"
 
 typedef std::make_signed<size_t>::type ssize_t;
 

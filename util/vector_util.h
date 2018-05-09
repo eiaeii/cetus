@@ -6,7 +6,7 @@
 namespace terra
 {
 	template<class T, typename = std::enable_if_t<is_vector<T>::value>>
-	class VectorUtil
+	class VectorUtils
 	{
 		using ValueType = typename T::value_type;
 		using SizeType = typename T::size_type;
