@@ -1,19 +1,23 @@
 #include "console_util.h"
+#include "logger/g3log_fwd.h"
+#ifdef _WIN32
+#include <Windows.h>
+#endif
 
 using namespace terra;
 
-void ConsoleUtils::SetColor(ConsoleColor color)
+void ConsoleUtils::SetColor(EConsoleColor color)
 {
 	switch (color)
 	{
-	case ConsoleColor::DEFAULT: SetDefault(); break;
-	case ConsoleColor::WHITE: SetWhite(); break;
-	case ConsoleColor::GREEN: SetGreen(); break;
-	case ConsoleColor::YELLOW: SetYellow(); break;
-	case ConsoleColor::BLUE: SetBlue(); break;
-	case ConsoleColor::CYAN: SetCyan(); break;
-	case ConsoleColor::PINK: SetPink(); break;
-	case ConsoleColor::RED: SetRed(); break;
+	case EConsoleColor::DEFAULT: SetDefault(); break;
+	case EConsoleColor::WHITE: SetWhite(); break;
+	case EConsoleColor::GREEN: SetGreen(); break;
+	case EConsoleColor::YELLOW: SetYellow(); break;
+	case EConsoleColor::BLUE: SetBlue(); break;
+	case EConsoleColor::CYAN: SetCyan(); break;
+	case EConsoleColor::PINK: SetPink(); break;
+	case EConsoleColor::RED: SetRed(); break;
 	default: break;
 	}
 }

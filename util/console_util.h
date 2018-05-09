@@ -1,10 +1,10 @@
 #pragma once
 
-#include "core.h"
+#include <cstdint>
 
 namespace terra
 {
-	enum class ConsoleColor
+	enum class EConsoleColor
 	{
 		DEFAULT,
 		WHITE,
@@ -18,7 +18,7 @@ namespace terra
 	class ConsoleUtils
 	{
 	public:
-		static void SetColor(ConsoleColor color);
+		static void SetColor(EConsoleColor color);
 		static void SetBufferSize(int16_t x, int16_t y);
 
 
