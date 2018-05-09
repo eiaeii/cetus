@@ -40,6 +40,7 @@ namespace terra
 			EConsoleColor color = GetConsoleColor(level);
 			ConsoleUtils::SetColor(color);
 			std::cout << logEntry.get().toString();
+			ConsoleUtils::SetColor(EConsoleColor::DEFAULT);
 		}
     };
 

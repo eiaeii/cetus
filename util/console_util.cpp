@@ -33,7 +33,7 @@ void ConsoleUtils::SetBufferSize(int16_t x, int16_t y)
 
 	if (!SetConsoleScreenBufferSize(hCon, coord))
 	{
-		LOGF(WARNING, "SetConsoleScreenBufferSize (%d)", GetLastError());
+		LOGF(G3LOG_ERROR, "SetConsoleScreenBufferSize (%d)", GetLastError());
 	}
 #endif
 }
