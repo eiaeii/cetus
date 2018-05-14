@@ -60,11 +60,11 @@ void SocketBuffer::PopFront(uint32_t size)
 	}
 }
 
-void SocketBuffer::ExpandBuffer(uint32_t capacity)
+void SocketBuffer::ExpandBuffer(uint32_t size)
 {
-	Expects(capacity <= std::numeric_limits<uint32_t>::max()/2);
+	Expects(size <= std::numeric_limits<uint32_t>::max()/2);
 	uint32_t alloc_size = capacity_;
-	while ((alloc_size - back_) > capacity)
+	while ((alloc_size - back_) < size)
 	{
 		alloc_size *= 2;
 	}
