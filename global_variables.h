@@ -4,5 +4,5 @@
 
 namespace terra
 {
-	extern thread_local int64_t GTLFrameCounter;
+	extern int64_t GTLFrameCounter;
 }

@@ -162,8 +162,10 @@
     <ClInclude Include="thread\runnable_thread.h" />
     <ClInclude Include="thread\thread_pool.hpp" />
     <ClInclude Include="thread\thread_safe_queue.hpp" />
+    <ClInclude Include="timer\schedule_timer_lite.h" />
     <ClInclude Include="timer\timekeeper.h" />
     <ClInclude Include="timer\schedule_timer.h" />
+    <ClInclude Include="timer\timer_data.h" />
     <ClInclude Include="timer\timer_handle.h" />
     <ClInclude Include="timer\frame_timer.h" />
     <ClInclude Include="time\data_time.h" />
@@ -190,6 +192,7 @@
     <ClCompile Include="thread\runnable_thread.cpp" />
     <ClCompile Include="timer\schedule_timer.cpp" />
     <ClCompile Include="timer\frame_timer.cpp" />
+    <ClCompile Include="timer\schedule_timer_lite.cpp" />
     <ClCompile Include="time\data_time.cpp" />
     <ClCompile Include="time\timespan.cpp" />
     <ClCompile Include="util\console_util.cpp" />

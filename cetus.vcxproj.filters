@@ -168,6 +168,12 @@
     <ClInclude Include="logger\g3log_fwd.h">
       <Filter>logger</Filter>
     </ClInclude>
+    <ClInclude Include="timer\timer_data.h">
+      <Filter>timer</Filter>
+    </ClInclude>
+    <ClInclude Include="timer\schedule_timer_lite.h">
+      <Filter>timer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="time\timespan.cpp">
@@ -215,6 +221,9 @@
     </ClCompile>
     <ClCompile Include="util\console_util.cpp">
       <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="timer\schedule_timer_lite.cpp">
+      <Filter>timer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
